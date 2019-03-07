@@ -14,3 +14,9 @@ Das Frontend mit `npm start` ausführen und die [Vue-Erweiterung](https://github
 1. Das Frontend bauen mit `node build/build.js` in `/frontend`
 2. Build-Ergebnis aus `/frontend/dist` nach `/backend/public` kopieren
 3. Backend starten mit `npm start` (oder `node ./app.js`) in `/backend`
+
+## Resourcen
+* [BootstrapVue](https://github.com/bootstrap-vue/bootstrap-vue)
+    * [Bootstrap 4](https://github.com/twbs/bootstrap)
+    * [Vue.js](https://vuejs.org)
+* [NodeJS v8.9.1 & npm@6.9.0](https://nodejs.org/)
