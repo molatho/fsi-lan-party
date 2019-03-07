@@ -1,0 +1,36 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "username": "test",
+      "password": "123",
+      "role": "admin"
+    }
+  ],
+  "pizza": {
+    "status": "none",
+    "orders": [
+      {
+        "id": "1",
+        "ip": "127.0.0.1",
+        "selection": "Tonno",
+        "size": "l",
+        "qty": 1
+      },
+      {
+        "selection": "Etna",
+        "size": "Normal (26 cm)",
+        "qty": 2,
+        "ip": "::1",
+        "id": "2dcc7cbb-f1d7-44dd-8249-4a641c5cfb19"
+      },
+      {
+        "selection": "Etna",
+        "size": "Normal (26 cm)",
+        "qty": 1,
+        "ip": "::1",
+        "id": "0c08a522-2298-407a-9fff-20030e6ded0c"
+      }
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "fsi-lan-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "express-session": "^1.15.6",
+    "lowdb": "^1.0.0",
+    "session-file-store": "^1.2.0",
+    "uuid": "^3.3.2"
+  }
+}
