@@ -1,0 +1,17 @@
+{
+    "users": {
+        "_sample_user": {
+            "name": "asdd"
+        }
+    },
+    "tables": {
+        "_sample_table": {
+            "tokens": ["_sample_token"]
+        }
+    },
+    "tokens": {
+        "_sample_token": {
+            "user": "_sample_user"
+        }
+    }
+}

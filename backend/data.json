@@ -7,6 +7,12 @@
       "role": "admin"
     }
   ],
+  "tokens": [
+    {
+      "id": "0c08a522-2298-407a-9fff-20030e6ded0c",
+      "table": "Alpha"
+    }
+  ],
   "pizza": {
     "status": "none",
     "orders": [
@@ -18,18 +24,11 @@
         "qty": 1
       },
       {
-        "selection": "Etna",
+        "selection": "Mozzarella",
         "size": "Normal (26 cm)",
-        "qty": 2,
+        "qty": 3,
         "ip": "::1",
-        "id": "2dcc7cbb-f1d7-44dd-8249-4a641c5cfb19"
-      },
-      {
-        "selection": "Etna",
-        "size": "Normal (26 cm)",
-        "qty": 1,
-        "ip": "::1",
-        "id": "0c08a522-2298-407a-9fff-20030e6ded0c"
+        "id": "a97ef5d2-94d4-4d29-9432-d1b6f2e7fc71"
       }
     ]
   }
