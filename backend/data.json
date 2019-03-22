@@ -2,8 +2,8 @@
   "users": [
     {
       "id": "1",
-      "username": "test",
-      "password": "123",
+      "username": "thor",
+      "token": "fsiwurst",
       "role": "admin"
     }
   ],
@@ -21,283 +21,290 @@
     ]
   },
   "tables": {
+    "ADMINS": {
+      "tokens": {
+        "fsiwurst": {
+          "userid": null
+        }
+      }
+    },
     "Alfa": {
       "tokens": {
         "wPVnZ9AO": {
-          "user": null
+          "userid": null
         },
         "C1Zu6bvX": {
-          "user": null
+          "userid": null
         },
         "5288AlkJ": {
-          "user": null
+          "userid": null
         },
         "2U4qiOGN": {
-          "user": null
+          "userid": null
         },
         "ZohAjLdW": {
-          "user": null
+          "userid": null
         },
         "fHfANOGF": {
-          "user": null
+          "userid": null
         },
         "00B575FB": {
-          "user": null
+          "userid": null
         },
         "oLiFOg78": {
-          "user": null
+          "userid": null
         }
       }
     },
     "Bravo": {
       "tokens": {
         "AUcW3ytL": {
-          "user": null
+          "userid": null
         },
         "sBrYnIqh": {
-          "user": null
+          "userid": null
         },
         "XpFQbU39": {
-          "user": null
+          "userid": null
         },
         "6Mi6cx6V": {
-          "user": null
+          "userid": null
         },
         "uhQuVgtj": {
-          "user": null
+          "userid": null
         },
         "NGyftvbV": {
-          "user": null
+          "userid": null
         },
         "YmxPrKJj": {
-          "user": null
+          "userid": null
         },
         "oeraorqf": {
-          "user": null
+          "userid": null
         }
       }
     },
     "Charlie": {
       "tokens": {
         "sjforWvk": {
-          "user": null
+          "userid": null
         },
         "TtHbfril": {
-          "user": null
+          "userid": null
         },
         "6hUcio3H": {
-          "user": null
+          "userid": null
         },
         "L9FVljNM": {
-          "user": null
+          "userid": null
         },
         "mLJbIlTI": {
-          "user": null
+          "userid": null
         },
         "6cyvZ5Wq": {
-          "user": null
+          "userid": null
         },
         "72Oau87Y": {
-          "user": null
+          "userid": null
         },
         "uowYrwB1": {
-          "user": null
+          "userid": null
         }
       }
     },
     "Delta": {
       "tokens": {
         "Do3ChyT2": {
-          "user": null
+          "userid": null
         },
         "53C0qy3M": {
-          "user": null
+          "userid": null
         },
         "NzudbsL8": {
-          "user": null
+          "userid": null
         },
         "DgML8IRK": {
-          "user": null
+          "userid": null
         },
         "Kkt5lZIW": {
-          "user": null
+          "userid": null
         },
         "GG3qN1LG": {
-          "user": null
+          "userid": null
         },
         "710wnJKw": {
-          "user": null
+          "userid": null
         },
         "Ouya7TEy": {
-          "user": null
+          "userid": null
         }
       }
     },
     "Echo": {
       "tokens": {
         "r70kZgKF": {
-          "user": null
+          "userid": null
         },
         "98JeH3Il": {
-          "user": null
+          "userid": null
         },
         "WIFvBnR4": {
-          "user": null
+          "userid": null
         },
         "Ll0Lsd1P": {
-          "user": null
+          "userid": null
         },
         "OMlqNmhi": {
-          "user": null
+          "userid": null
         },
         "4rVogQXv": {
-          "user": null
+          "userid": null
         },
         "S2HXcpOL": {
-          "user": null
+          "userid": null
         },
         "XvuYtKtS": {
-          "user": null
+          "userid": null
         }
       }
     },
     "Foxtrot": {
       "tokens": {
         "Nypjkkmj": {
-          "user": null
+          "userid": null
         },
         "z4H0GEdX": {
-          "user": null
+          "userid": null
         },
         "8fLln7Bt": {
-          "user": null
+          "userid": null
         },
         "NdyW4Z6G": {
-          "user": null
+          "userid": null
         },
         "wlZd2rVI": {
-          "user": null
+          "userid": null
         },
         "4hj4aWEH": {
-          "user": null
+          "userid": null
         },
         "nKlJUlyd": {
-          "user": null
+          "userid": null
         },
         "RqJwNlJW": {
-          "user": null
+          "userid": null
         }
       }
     },
     "Golf": {
       "tokens": {
         "ad307hrc": {
-          "user": null
+          "userid": null
         },
         "TRxlZSk9": {
-          "user": null
+          "userid": null
         },
         "uFSGAghT": {
-          "user": null
+          "userid": null
         },
         "r6h8GgD0": {
-          "user": null
+          "userid": null
         },
         "58yTKpjS": {
-          "user": null
+          "userid": null
         },
         "8VLwWnaI": {
-          "user": null
+          "userid": null
         },
         "ll0wbxux": {
-          "user": null
+          "userid": null
         },
         "wWs4PFVl": {
-          "user": null
+          "userid": null
         }
       }
     },
     "Hotel": {
       "tokens": {
         "1aDtqi2I": {
-          "user": null
+          "userid": null
         },
         "aM54tuwZ": {
-          "user": null
+          "userid": null
         },
         "WVMHU3YV": {
-          "user": null
+          "userid": null
         },
         "6mAykhE8": {
-          "user": null
+          "userid": null
         },
         "LTeafh0h": {
-          "user": null
+          "userid": null
         },
         "njRWDfvD": {
-          "user": null
+          "userid": null
         },
         "q1X9MYhh": {
-          "user": null
+          "userid": null
         },
         "gTdPnD5E": {
-          "user": null
+          "userid": null
         }
       }
     },
     "India": {
       "tokens": {
         "Lefpd4E2": {
-          "user": null
+          "userid": null
         },
         "SfGDQnaD": {
-          "user": null
+          "userid": null
         },
         "ubOWfW1E": {
-          "user": null
+          "userid": null
         },
         "ch42W3mt": {
-          "user": null
+          "userid": null
         },
         "qJP9Lc3o": {
-          "user": null
+          "userid": null
         },
         "qdo90a7n": {
-          "user": null
+          "userid": null
         },
         "hK2cvkBG": {
-          "user": null
+          "userid": null
         },
         "hlXrRpYn": {
-          "user": null
+          "userid": null
         }
       }
     },
     "Juliett": {
       "tokens": {
         "4VIS18w1": {
-          "user": null
+          "userid": null
         },
         "tAcnBSSS": {
-          "user": null
+          "userid": null
         },
         "qgYnK9Or": {
-          "user": null
+          "userid": null
         },
         "jV1u8eQM": {
-          "user": null
+          "userid": null
         },
         "xSdhXRqH": {
-          "user": null
+          "userid": null
         },
         "1pyameuh": {
-          "user": null
+          "userid": null
         },
         "nYFkXxdG": {
-          "user": null
+          "userid": null
         },
         "EQCNOF90": {
-          "user": null
+          "userid": null
         }
       }
     }

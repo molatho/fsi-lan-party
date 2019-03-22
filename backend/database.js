@@ -1,6 +1,7 @@
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 const utils = require("./utils");
+const uuid = require("uuid");
 
 var db;
 const TOKENS_PER_TABLE = 8;
@@ -104,12 +105,12 @@ class Database {
                 if (token === undefined) {
                     var id = Database.createTokenId(TOKEN_LENGTH);
                     var token = {
-                        "user": null
+                        "userid": null
                     };
                     table.tokens[id] = token;
                     console.log(" > Created token ", id, ".");
                 }
-                token.user = null;
+                token.userid = null;
             }
         }
         db.set("tables", tables).write();
@@ -142,6 +143,119 @@ class Database {
         var db = Database.get();
         db.get("tables").get(name).get("tokens").get(tokenId).set("user", null).write();
         return callback();
+    }
+
+
+    /**
+     * Gathers information about the given token (id, tablename, user)
+     *
+     * @static
+     * @param {*} tokenId
+     * @returns
+     * @memberof Database
+     */
+    static getTokenInformation(tokenId) {
+        var name = Database.getTableNameByToken(tokenid);
+        if (name == null) return null;
+        var token = db.get("tables").get("name").get("tokens").get(tokenId);
+        var user = Database.getUserById(token.userid);
+        return {
+            "tokenId": tokenId,
+            "table": name,
+            "user": user
+        };
+    }
+
+    /**
+     * Gets a user by its user id
+     *
+     * @static
+     * @param {*} userid
+     * @returns
+     * @memberof Database
+     */
+    static getUserById(userid) {
+        var db = Database.get();
+        var user = db.get("users")
+            .filter({ id: userid })
+            .take(1)
+            .value();
+        if (!user || !user.length) return null;
+        return user[0];
+    }
+
+    /**
+     * Returns the information 
+     *
+     * @static
+     * @param {string} token
+     * @param {string} username
+     * @param {function} callback
+     * @returns
+     * @memberof Database
+     */
+    static checkLogin(token, username, callback) {
+        var db = Database.get();
+        var token = Database.getTokenInformation(token);
+        if (token == null) return callback({ err: "Invalid token" });
+        if (token.user == null) return callback({ err: "Invalid token or username" });
+
+        return callback(null, token);
+    }
+
+    /**
+     * Registers a user to the given token
+     *
+     * @static
+     * @param {*} token
+     * @param {*} username
+     * @param {*} callback
+     * @returns
+     * @memberof Database
+     */
+    static registerUser(token, username, callback) {
+        var db = Database.get();
+        var token = Database.getTokenInformation(token);
+
+        if (token == null) return callback("Invalid token.");
+        if (token.user != null) return callback("Token already registered");
+
+        var user = Database.get().get('users')
+            .filter({ username: username })
+            .take(1)
+            .value();
+        if (user && user.length > 0) {
+            return callback('Username already taken');
+        }
+
+        user = {
+            username: username,
+            token: token,
+            id: uuid.v1(),
+            role: "user"
+        };
+
+        var user = db.get('users').push(user).write();
+        db.get('tables').get(token.table).get("tokens").get(req.body.token).set("userid", user.id).write();
+        callback(null, user);
+    }
+
+    static getAllRegisteredTokens() {
+        var registeredTokens = [];
+        var tables = Database.get().get("tables").value();
+        var tableNames = Object.value(tables);
+        for (var _tableNameIdx in tableNames) {
+            var table = tables[tableNames[_tableNameIdx]];
+            var tokens = Object.keys(table.tokens);
+            for (var tokenId in tokens) {
+                var token = table.tokens[tokens[tokenId]];
+                if (token.userid !== null)
+                {
+                    registeredTokens.push(Database.getTokenInformation(tokens[tokenId]));
+                }
+            }
+        }
+        return registeredTokens;
     }
 }
 

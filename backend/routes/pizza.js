@@ -28,14 +28,14 @@ router.get('/orders', (req, res) => {
 
 router.get('/admin/orders', (req, res) => {
     if (!req.session.user || req.session.user.role !== "admin") {
-        return res.status(403).send("Ähm nein.");
+        return res.status(400).send({ err: "Ähm nein." });
     }
     res.status(200).send(Database.get().get("pizza").get("orders").value());
 });
 
 router.delete('/admin/orders', (req, res) => {
     if (!req.session.user || req.session.user.role !== "admin") {
-        return res.status(403).send("Ähm nein.");
+        return res.status(400).send({ err: "Ähm nein." });
     }
     Database.get().get("pizza").set("orders", []).write();
     res.status(200).send(Database.get().get("pizza").value());
@@ -47,7 +47,7 @@ router.delete('/orders/:id', (req, res) => {
     var orders = Database.get().get("pizza").get("orders").filter({ "ip": ip, "id": id }).value();
 
     if (!orders || orders.length == 0) {
-        return res.status(403).send("Ungültige Bestellung.");
+        return res.status(400).send({ err: "Ungültige Bestellung." });
     }
 
     Database.get().get("pizza").get("orders").remove(orders[0]).write();
@@ -63,13 +63,13 @@ router.post('/', (req, res) => {
     };
 
     if (utils.isEmpty(item.selection) || utils.isEmpty(item.size) || item.qty < 1) {
-        return res.status(403).send("Ungültige Bestelldaten.");
+        return res.status(400).send({ err: "Ungültige Bestelldaten." });
     }
 
     var orders = Database.get().get("pizza").get("orders").filter({ "ip": item.ip }).value();
     var sum = 0;
     if (orders.length > 0) {
-        sum = orders.reduce((total, value)=> (parseInt(total) | 0) + (parseInt(value.qty) | 0), 0);
+        sum = orders.reduce((total, value) => (parseInt(total) | 0) + (parseInt(value.qty) | 0), 0);
         console.log(sum);
         if (sum >= MAX) {
             return res.status(403).send(`Du hast bereits ${sum} Pizzen bestellt!`);

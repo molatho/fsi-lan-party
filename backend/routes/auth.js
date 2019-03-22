@@ -4,59 +4,52 @@ const Database = require('../database');
 const router = express.Router();
 
 router.get('/status', (req, res) => {
-    if (req.session.user) {
+    if (req.session.token) {
         res.status(200).send('Logged in');
     } else {
-        res.status(403).send('Not logged in');
+        res.status(400).send({ err: 'Not logged in' });
     }
 });
 
 router.post('/login', (req, res) => {
-    if (req.session.user) {
-        return res.status(403).send('Already logged in');
+    if (req.session.token) {
+        return res.status(400).send({ err: 'Already logged in' });
     }
+
     var user = Database.get().get('users')
-        .filter({ username: req.body.username, password: req.body.password })
+        .filter({ username: req.body.username, token: req.body.token })
         .take(1)
         .value();
     if (!user || !user.length) {
-        return res.status(403).send('You shall not pass');
+        return res.status(400).send({ err: 'You shall not pass' });
     }
-    req.session.user = user[0];
+    req.session.token = user[0];
     res.status(200).send(`Logged in as ${user[0].username}`);
 });
 
 router.post('/logout', (req, res) => {
-    if (!req.session.user) {
-        return res.status(403).send('You shall not pass');
+    if (!req.session.token) {
+        return res.status(400).send({ err: 'You shall not pass' });
     }
-    req.session.user = undefined;
+    req.session.token = undefined;
     res.status(200).send(`Logged out`);
 });
 
-/*router.post('/register', (req, res) => {
-    if (req.session.user) {
-        return res.status(403).send('Already logged in');
+router.post('/register', (req, res) => {
+    if (req.session.token) {
+        return res.status(400).send({ err: 'Already logged in' });
     }
-    if (utils.isEmpty(req.body.username) || utils.isEmpty(req.body.password)) {
-        return res.status(403).send('Invalid parameters');
+    if (utils.isEmpty(req.body.username) || utils.isEmpty(req.body.token)) {
+        return res.status(400).send({ err: 'Invalid parameters' });
     }
-    var user = Database.get().get('users')
-        .filter({ username: req.body.username })
-        .take(1)
-        .value();
-    if (user && user.length > 0) {
-        return res.status(403).send('User already registered');
-    }
-    user = {
-        username: req.body.username,
-        password: req.body.password,
-        id: uuid.v1(),
-        role: "user"
-    };
-    var user = Database.get().get('users').push(user).write();
-    req.session.user = user;
-    res.status(200).send(`Logged in as ${user[0].username}`);
-});*/
+    Database.registerUser(req.body.username, req.body.token, (err, user) => {
+        if (err) {
+            return res.status(400).send({ err: err });
+        }
+
+        req.session.token = user;
+        res.status(200).send(user);
+    });
+});
 
 module.exports = router;
