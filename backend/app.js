@@ -11,13 +11,22 @@ const pizza = require('./routes/pizza')
 
 Database.initialize("data.json");
 Database.get().defaults({
-    users: [{ id: "1", username: 'test', password: '123', role: 'admin'}],
-    pizza: { 
-        status: 'none',
-        orderId: 1,
-        orders: [
+    "users": [{ id: "1", username: 'test', password: '123', role: 'admin'}],
+    "pizza": { 
+        "status": 'none',
+        "orderId": 1,
+        "orders": [
             { id: 1, ip: '127.0.0.1', selection: 'Tonno', size:'l', qty: 1 }
         ]
+    },
+    "tables": {
+        "_sample_table": {
+            "tokens": {
+                "_sample_token": {
+                    "user":null
+                }
+            }
+        }
     }
 }).write();
 const app = express()

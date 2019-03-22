@@ -6,12 +6,12 @@
     },
     "tables": {
         "_sample_table": {
-            "tokens": ["_sample_token"]
-        }
-    },
-    "tokens": {
-        "_sample_token": {
-            "user": "_sample_user"
+            "tokens": [
+                {
+                    "id": "_sample_token",
+                    "user":"_sample_user"
+                }
+            ]
         }
     }
 }
