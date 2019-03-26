@@ -9,26 +9,12 @@ const Database = require('./database')
 const auth = require('./routes/auth')
 const pizza = require('./routes/pizza')
 
+console.log("Initializing database...");
 Database.initialize("data.json");
-Database.get().defaults({
-    "users": [{ id: "1", username: 'test', password: '123', role: 'admin'}],
-    "pizza": { 
-        "status": 'none',
-        "orderId": 1,
-        "orders": [
-            { id: 1, ip: '127.0.0.1', selection: 'Tonno', size:'l', qty: 1 }
-        ]
-    },
-    "tables": {
-        "_sample_table": {
-            "tokens": {
-                "_sample_token": {
-                    "user":null
-                }
-            }
-        }
-    }
-}).write();
+console.log("Applying default values...");
+Database.get().defaults(JSON.parse(fs.readFileSync("data.default.json"))).write();
+console.log("> Database ready!");
+
 const app = express()
 app.set('trust proxy', 1)
 app.use(session({

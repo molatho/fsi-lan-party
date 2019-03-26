@@ -1,312 +1,164 @@
 {
   "users": [
-    {
-      "id": "1",
-      "username": "thor",
-      "token": "fsiwurst",
-      "role": "admin"
-    }
-  ],
-  "pizza": {
-    "status": "none",
-    "orderId": 1,
-    "orders": [
       {
-        "id": 1,
-        "ip": "127.0.0.1",
-        "selection": "Tonno",
-        "size": "l",
-        "qty": 1
+          "name": "thor",
+          "password": "fsipizza",
+          "role": "admin"
       }
-    ]
+  ],
+  "tables": [
+      {
+          "name": "ORGA",
+          "seats": 10
+      }
+  ],
+  "menu": {
+      "sizes": [
+          {
+              "size": "Normal (27cm)",
+              "price": 6
+          },
+          {
+              "size": "Groß (33cm)",
+              "price": 9
+          }
+      ],
+      "meals": [
+          {
+              "id": "06",
+              "name": "Vegetaria",
+              "description": "Artischocken, Zwiebeln, Paprika, Peperoni"
+          },
+          {
+              "id": "09",
+              "name": "Spezial",
+              "description": "Salami, Pilze, Schinken, Paprika"
+          },
+          {
+              "id": "10",
+              "name": "Teufel",
+              "description": "Knoblauch, Peperoni-Wurst, Sardellen"
+          },
+          {
+              "id": "11",
+              "name": "Marinara  ",
+              "description": "Zwiebeln, Knoblauch, Krabben, Muscheln"
+          },
+          {
+              "id": "12",
+              "name": "Pepe",
+              "description": "Zwiebeln, Knoblauch, Artischocken, Thunfisch"
+          },
+          {
+              "id": "13",
+              "name": "4 Jahreszeiten",
+              "description": "Pilze, Paprika, Salami, Schinken, Oliven, Ei"
+          },
+          {
+              "id": "14",
+              "name": "Selma",
+              "description": "Kapern, Schinken, Spinat, gekochtes Ei"
+          },
+          {
+              "id": "16",
+              "name": "Angelica",
+              "description": "Pilze, Paprika, Artischocken, Oliven, Schinken"
+          },
+          {
+              "id": "17",
+              "name": "Opa",
+              "description": "Pilze, Salami, Schinken, Würstchen"
+          },
+          {
+              "id": "18",
+              "name": "Hawaii",
+              "description": "Pilze, Schinken, Ananas"
+          },
+          {
+              "id": "19",
+              "name": "Mediterrana",
+              "description": "Erbsen, Blumenkohl, Auberginen"
+          },
+          {
+              "id": "20",
+              "name": "Oma",
+              "description": "Basilikum, Peperoni-Wurst, Oliven und Mozzarella"
+          },
+          {
+              "id": "21",
+              "name": "Quad Form.",
+              "description": "4 verschiedene Käsesorten"
+          },
+          {
+              "id": "24",
+              "name": "Gorgonzola",
+              "description": "Schinken, Gorgonzola"
+          },
+          {
+              "id": "26",
+              "name": "Toto",
+              "description": "Paprika, Schafskäse, Peperoni, Oliven, frische Tomaten"
+          },
+          {
+              "id": "27",
+              "name": "Panna",
+              "description": "Sahne, Zwiebeln, Speck und Käse"
+          },
+          {
+              "id": "28",
+              "name": "Rucola",
+              "description": "Knoblauch, Parmesan, frische Tomaten und Käse"
+          },
+          {
+              "id": "29",
+              "name": "Samira",
+              "description": "Spinat, Gorgonzola"
+          },
+          {
+              "id": "30",
+              "name": "Beniamino",
+              "description": "Schinken, Mais, Broccoli"
+          },
+          {
+              "id": "31",
+              "name": "Pizza Eva",
+              "description": "Mozzarella, Basilikum, frische Tomaten"
+          },
+          {
+              "id": "32",
+              "name": "Pizza Adam",
+              "description": "Mozzarella, frische Tomaten, Zucchini, Basilikum, Olivenöl und Oregano"
+          },
+          {
+              "id": "33",
+              "name": "Istanbul",
+              "description": "Sucuk, Peperoni"
+          },
+          {
+              "id": "34",
+              "name": "Bosporus",
+              "description": "Thunfisch, Zwiebeln, Peperoni"
+          },
+          {
+              "id": "35",
+              "name": "Ali Baba",
+              "description": "Thunfisch, Schafskäse"
+          },
+          {
+              "id": "36",
+              "name": "Napoli",
+              "description": "Artischocken, Oliven, Sardellen und Käse"
+          }
+      ]
   },
-  "tables": {
-    "ADMINS": {
-      "tokens": {
-        "fsiwurst": {
-          "userid": null
-        }
+  "orders": [
+      {
+          "id": "0",
+          "table": 0,
+          "seat": 0,
+          "meal": 0,
+          "size": 0,
+          "delivered": false
       }
-    },
-    "Alfa": {
-      "tokens": {
-        "wPVnZ9AO": {
-          "userid": null
-        },
-        "C1Zu6bvX": {
-          "userid": null
-        },
-        "5288AlkJ": {
-          "userid": null
-        },
-        "2U4qiOGN": {
-          "userid": null
-        },
-        "ZohAjLdW": {
-          "userid": null
-        },
-        "fHfANOGF": {
-          "userid": null
-        },
-        "00B575FB": {
-          "userid": null
-        },
-        "oLiFOg78": {
-          "userid": null
-        }
-      }
-    },
-    "Bravo": {
-      "tokens": {
-        "AUcW3ytL": {
-          "userid": null
-        },
-        "sBrYnIqh": {
-          "userid": null
-        },
-        "XpFQbU39": {
-          "userid": null
-        },
-        "6Mi6cx6V": {
-          "userid": null
-        },
-        "uhQuVgtj": {
-          "userid": null
-        },
-        "NGyftvbV": {
-          "userid": null
-        },
-        "YmxPrKJj": {
-          "userid": null
-        },
-        "oeraorqf": {
-          "userid": null
-        }
-      }
-    },
-    "Charlie": {
-      "tokens": {
-        "sjforWvk": {
-          "userid": null
-        },
-        "TtHbfril": {
-          "userid": null
-        },
-        "6hUcio3H": {
-          "userid": null
-        },
-        "L9FVljNM": {
-          "userid": null
-        },
-        "mLJbIlTI": {
-          "userid": null
-        },
-        "6cyvZ5Wq": {
-          "userid": null
-        },
-        "72Oau87Y": {
-          "userid": null
-        },
-        "uowYrwB1": {
-          "userid": null
-        }
-      }
-    },
-    "Delta": {
-      "tokens": {
-        "Do3ChyT2": {
-          "userid": null
-        },
-        "53C0qy3M": {
-          "userid": null
-        },
-        "NzudbsL8": {
-          "userid": null
-        },
-        "DgML8IRK": {
-          "userid": null
-        },
-        "Kkt5lZIW": {
-          "userid": null
-        },
-        "GG3qN1LG": {
-          "userid": null
-        },
-        "710wnJKw": {
-          "userid": null
-        },
-        "Ouya7TEy": {
-          "userid": null
-        }
-      }
-    },
-    "Echo": {
-      "tokens": {
-        "r70kZgKF": {
-          "userid": null
-        },
-        "98JeH3Il": {
-          "userid": null
-        },
-        "WIFvBnR4": {
-          "userid": null
-        },
-        "Ll0Lsd1P": {
-          "userid": null
-        },
-        "OMlqNmhi": {
-          "userid": null
-        },
-        "4rVogQXv": {
-          "userid": null
-        },
-        "S2HXcpOL": {
-          "userid": null
-        },
-        "XvuYtKtS": {
-          "userid": null
-        }
-      }
-    },
-    "Foxtrot": {
-      "tokens": {
-        "Nypjkkmj": {
-          "userid": null
-        },
-        "z4H0GEdX": {
-          "userid": null
-        },
-        "8fLln7Bt": {
-          "userid": null
-        },
-        "NdyW4Z6G": {
-          "userid": null
-        },
-        "wlZd2rVI": {
-          "userid": null
-        },
-        "4hj4aWEH": {
-          "userid": null
-        },
-        "nKlJUlyd": {
-          "userid": null
-        },
-        "RqJwNlJW": {
-          "userid": null
-        }
-      }
-    },
-    "Golf": {
-      "tokens": {
-        "ad307hrc": {
-          "userid": null
-        },
-        "TRxlZSk9": {
-          "userid": null
-        },
-        "uFSGAghT": {
-          "userid": null
-        },
-        "r6h8GgD0": {
-          "userid": null
-        },
-        "58yTKpjS": {
-          "userid": null
-        },
-        "8VLwWnaI": {
-          "userid": null
-        },
-        "ll0wbxux": {
-          "userid": null
-        },
-        "wWs4PFVl": {
-          "userid": null
-        }
-      }
-    },
-    "Hotel": {
-      "tokens": {
-        "1aDtqi2I": {
-          "userid": null
-        },
-        "aM54tuwZ": {
-          "userid": null
-        },
-        "WVMHU3YV": {
-          "userid": null
-        },
-        "6mAykhE8": {
-          "userid": null
-        },
-        "LTeafh0h": {
-          "userid": null
-        },
-        "njRWDfvD": {
-          "userid": null
-        },
-        "q1X9MYhh": {
-          "userid": null
-        },
-        "gTdPnD5E": {
-          "userid": null
-        }
-      }
-    },
-    "India": {
-      "tokens": {
-        "Lefpd4E2": {
-          "userid": null
-        },
-        "SfGDQnaD": {
-          "userid": null
-        },
-        "ubOWfW1E": {
-          "userid": null
-        },
-        "ch42W3mt": {
-          "userid": null
-        },
-        "qJP9Lc3o": {
-          "userid": null
-        },
-        "qdo90a7n": {
-          "userid": null
-        },
-        "hK2cvkBG": {
-          "userid": null
-        },
-        "hlXrRpYn": {
-          "userid": null
-        }
-      }
-    },
-    "Juliett": {
-      "tokens": {
-        "4VIS18w1": {
-          "userid": null
-        },
-        "tAcnBSSS": {
-          "userid": null
-        },
-        "qgYnK9Or": {
-          "userid": null
-        },
-        "jV1u8eQM": {
-          "userid": null
-        },
-        "xSdhXRqH": {
-          "userid": null
-        },
-        "1pyameuh": {
-          "userid": null
-        },
-        "nYFkXxdG": {
-          "userid": null
-        },
-        "EQCNOF90": {
-          "userid": null
-        }
-      }
-    }
-  }
+  ]
 }

@@ -1,10 +1,12 @@
 import Vue from 'vue'
+import BootstrapVue from 'bootstrap-vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
 import About from '@/components/About'
-import Pizza from '@/components/Pizza'
+import Meal from '@/components/Meal'
 
 Vue.use(Router)
+Vue.use(BootstrapVue)
 
 export default new Router({
   mode: 'history',
@@ -27,9 +29,9 @@ export default new Router({
       component: About
     },
     {
-      path: '/pizza',
-      name: 'Pizza',
-      component: Pizza,
+      path: '/meals',
+      name: 'Meals',
+      component: Meal,
       props: this.getHost
     }
   ]

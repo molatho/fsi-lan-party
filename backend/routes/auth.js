@@ -4,52 +4,36 @@ const Database = require('../database');
 const router = express.Router();
 
 router.get('/status', (req, res) => {
-    if (req.session.token) {
-        res.status(200).send('Logged in');
-    } else {
-        res.status(400).send({ err: 'Not logged in' });
-    }
+    if (req.session.user) return res.status(200).send({ msg: 'Logged in' });
+    res.status(400).send({ err: 'Not logged in' });
 });
 
 router.post('/login', (req, res) => {
-    if (req.session.token) {
-        return res.status(400).send({ err: 'Already logged in' });
-    }
+    if (req.session.user) return res.status(400).send({ err: 'Already logged in' });
 
-    var user = Database.get().get('users')
-        .filter({ username: req.body.username, token: req.body.token })
-        .take(1)
-        .value();
-    if (!user || !user.length) {
-        return res.status(400).send({ err: 'You shall not pass' });
-    }
-    req.session.token = user[0];
-    res.status(200).send(`Logged in as ${user[0].username}`);
+    Database.checkLogin(req.body.username, req.body.password, (err, user) => {
+        if (err) return res.status(400).send(err);
+        req.session.user = user;
+        res.status(200).send({ msg: `Logged in as ${user[0].username}` });
+    });
 });
 
 router.post('/logout', (req, res) => {
-    if (!req.session.token) {
-        return res.status(400).send({ err: 'You shall not pass' });
-    }
-    req.session.token = undefined;
-    res.status(200).send(`Logged out`);
+    if (!req.session.user) return res.status(400).send({ err: 'Not logged in' });
+
+    req.session.user = undefined;
+    res.status(200).send({ msg: `Logged out` });
 });
 
-router.post('/register', (req, res) => {
-    if (req.session.token) {
-        return res.status(400).send({ err: 'Already logged in' });
-    }
-    if (utils.isEmpty(req.body.username) || utils.isEmpty(req.body.token)) {
-        return res.status(400).send({ err: 'Invalid parameters' });
-    }
-    Database.registerUser(req.body.username, req.body.token, (err, user) => {
-        if (err) {
-            return res.status(400).send({ err: err });
-        }
+router.post('/new', (req, res) => {
+    if (!req.session.user) return res.status(400).send({ err: 'Not logged in' });
+    if (req.session.user.role != "admin") return res.status(403).send({ err: "Missing permissions" });
 
-        req.session.token = user;
-        res.status(200).send(user);
+    Database.addUser(req.body.username, req.body.password, req.body.role, (err, user) => {
+        if (err) return res.status(400).send(err);
+        res.status(200).send({ msg: `Created user ${req.body.username}` });
     });
+
 });
 
 module.exports = router;

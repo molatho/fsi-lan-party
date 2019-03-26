@@ -12,8 +12,8 @@
             <router-link to="/" exact tag="li" class="nav-item">
               <a class="nav-link">Home</a>
             </router-link>
-            <router-link to="/pizza" tag="li" class="nav-item">
-              <a class="nav-link">Pizza</a>
+            <router-link to="/meals" tag="li" class="nav-item">
+              <a class="nav-link">Meals</a>
             </router-link>
             <router-link to="/about" tag="li" class="nav-item">
               <a class="nav-link">About</a>
@@ -33,7 +33,7 @@
     name: 'app',
     data() {
       return {
-        host: "http://localhost:7777" //TODO: Get this from Process.env, CFG or anything like that
+        host: "http://localhost:80" //TODO: Get this from Process.env, CFG or anything like that
       };
     }
   }

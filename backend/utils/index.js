@@ -1,16 +1,14 @@
-const ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
 var utils = {
-    isEmpty: function isEmpty(str) {
-        return (!str || 0 === str.length);
-    },
-    makeid: function(length) {
-        var text = "";
-        for (var i = 0; i < length; i++)
-          text += ALPHABET.charAt(Math.floor(Math.random() * ALPHABET.length));
-        return text;
-      }
-
+  isEmpty: function (str) {
+    return (!str || 0 === str.length);
+  },
+  isEmptyArr: function (arr) {
+    if (!arr || arr.length == 0) return true;
+    for (var i in arr) {
+      if (utils.isEmpty(arr[i])) return true;
+    }
+    return false;
+  }
 }
 
 module.exports = utils;

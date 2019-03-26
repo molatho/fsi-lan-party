@@ -1,46 +1,42 @@
 <template>
   <div class="container">
-    <br/>
-    <!--New-->
-    <PizzaOrderNew v-on:addNew="newOrder"></PizzaOrderNew>
-    <hr/>
-    <Alert ref="alertAdd"></Alert>
-    <!--Panel-->
-    <PizzaPanel
-      v-bind:orders="info.orders"
-      v-on:anySelected="showButton = true"
-      v-on:noneSelected="showButton = false"></PizzaPanel>
-    <button 
-      v-if="showButton"
-      type="button"
-      class="btn btn-danger"
-      style="float:right;"
-      v-on:click="deleteOrders"
-      ><i class="fas fa-trash-alt"></i></button>
-    <Alert ref="alertRemove"></Alert>
-    <p>Host: {{host}}</p>
+    <div class="row">
+      <!-- Menu -->
+      <div class=".col-6">
+        <!--<MealKind
+          v-for="kind in menu"
+          v-bind:key="kind"
+          v-bind:mealKind="kind"
+        ></MealKind>-->
+        <MealMenu v-if="user != null" v-bind:menu="menu"></MealMenu>
+      </div>
+      <!-- Orders -->
+      <div class=".col-4">
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import Alert from './Alert'
-import PizzaPanel from './PizzaPanel'
-import PizzaOrderNew from './PizzaOrderNew'
+import MealKind from './MealComponents/MealKind'
+import MealMenu from './MealComponents/MealMenu'
 
 export default {
-  name: 'Pizza',
+  name: 'Meal',
   props: ['host'],
   data () {
     return {
-        info: {orders:[]},
-        showButton: false
+        menu: [],
+        user: null
     }
   },
   components: { 
-    PizzaPanel, PizzaOrderNew, Alert
+    Alert, MealKind, MealMenu
   },
   created: function() {
-      this.getPizzaStatus();
+      this.getMenu();
+      this.getUserInfo();
   },
   methods: {
     formatError: function(error) {
@@ -57,14 +53,24 @@ export default {
         }
       }
     },
-    getEndpoint: function(suffix) {
-      return `${this.host}/pizza/${(suffix || "")}`
+    getEndpoint: function(resource) {
+      return `${this.host}${(resource || "")}`
     },
-    getPizzaStatus: function(event) {
+    getMenu: function(event) {
       this.axios
-        .get(this.getEndpoint('orders'))
+        .get(this.getEndpoint('/meals/menu'))
         .then(res => {
-          this.info = {orders: res.data};
+          this.menu = res.data;
+        });
+    },
+    getUserInfo: function() {
+      this.axios
+        .get(this.getEndpoint('/auth/status'))
+        .then(res => {
+          this.menu = res.data;
+        }).catch((error) => {
+          console.warn(error);
+          //this.$refs.alertRemove.show('danger','Fehler!', this.formatError(error));
         });
     },
     deleteOrders: function(event) {
