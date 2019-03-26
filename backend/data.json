@@ -1,164 +1,164 @@
 {
   "users": [
-      {
-          "name": "thor",
-          "password": "fsipizza",
-          "role": "admin"
-      }
+    {
+      "name": "thor",
+      "password": "fsipizza",
+      "role": "admin"
+    }
   ],
   "tables": [
-      {
-          "name": "ORGA",
-          "seats": 10
-      }
+    {
+      "name": "ORGA",
+      "seats": 10
+    }
   ],
   "menu": {
-      "sizes": [
-          {
-              "size": "Normal (27cm)",
-              "price": 6
-          },
-          {
-              "size": "Groß (33cm)",
-              "price": 9
-          }
-      ],
-      "meals": [
-          {
-              "id": "06",
-              "name": "Vegetaria",
-              "description": "Artischocken, Zwiebeln, Paprika, Peperoni"
-          },
-          {
-              "id": "09",
-              "name": "Spezial",
-              "description": "Salami, Pilze, Schinken, Paprika"
-          },
-          {
-              "id": "10",
-              "name": "Teufel",
-              "description": "Knoblauch, Peperoni-Wurst, Sardellen"
-          },
-          {
-              "id": "11",
-              "name": "Marinara  ",
-              "description": "Zwiebeln, Knoblauch, Krabben, Muscheln"
-          },
-          {
-              "id": "12",
-              "name": "Pepe",
-              "description": "Zwiebeln, Knoblauch, Artischocken, Thunfisch"
-          },
-          {
-              "id": "13",
-              "name": "4 Jahreszeiten",
-              "description": "Pilze, Paprika, Salami, Schinken, Oliven, Ei"
-          },
-          {
-              "id": "14",
-              "name": "Selma",
-              "description": "Kapern, Schinken, Spinat, gekochtes Ei"
-          },
-          {
-              "id": "16",
-              "name": "Angelica",
-              "description": "Pilze, Paprika, Artischocken, Oliven, Schinken"
-          },
-          {
-              "id": "17",
-              "name": "Opa",
-              "description": "Pilze, Salami, Schinken, Würstchen"
-          },
-          {
-              "id": "18",
-              "name": "Hawaii",
-              "description": "Pilze, Schinken, Ananas"
-          },
-          {
-              "id": "19",
-              "name": "Mediterrana",
-              "description": "Erbsen, Blumenkohl, Auberginen"
-          },
-          {
-              "id": "20",
-              "name": "Oma",
-              "description": "Basilikum, Peperoni-Wurst, Oliven und Mozzarella"
-          },
-          {
-              "id": "21",
-              "name": "Quad Form.",
-              "description": "4 verschiedene Käsesorten"
-          },
-          {
-              "id": "24",
-              "name": "Gorgonzola",
-              "description": "Schinken, Gorgonzola"
-          },
-          {
-              "id": "26",
-              "name": "Toto",
-              "description": "Paprika, Schafskäse, Peperoni, Oliven, frische Tomaten"
-          },
-          {
-              "id": "27",
-              "name": "Panna",
-              "description": "Sahne, Zwiebeln, Speck und Käse"
-          },
-          {
-              "id": "28",
-              "name": "Rucola",
-              "description": "Knoblauch, Parmesan, frische Tomaten und Käse"
-          },
-          {
-              "id": "29",
-              "name": "Samira",
-              "description": "Spinat, Gorgonzola"
-          },
-          {
-              "id": "30",
-              "name": "Beniamino",
-              "description": "Schinken, Mais, Broccoli"
-          },
-          {
-              "id": "31",
-              "name": "Pizza Eva",
-              "description": "Mozzarella, Basilikum, frische Tomaten"
-          },
-          {
-              "id": "32",
-              "name": "Pizza Adam",
-              "description": "Mozzarella, frische Tomaten, Zucchini, Basilikum, Olivenöl und Oregano"
-          },
-          {
-              "id": "33",
-              "name": "Istanbul",
-              "description": "Sucuk, Peperoni"
-          },
-          {
-              "id": "34",
-              "name": "Bosporus",
-              "description": "Thunfisch, Zwiebeln, Peperoni"
-          },
-          {
-              "id": "35",
-              "name": "Ali Baba",
-              "description": "Thunfisch, Schafskäse"
-          },
-          {
-              "id": "36",
-              "name": "Napoli",
-              "description": "Artischocken, Oliven, Sardellen und Käse"
-          }
-      ]
+    "sizes": [
+      {
+        "size": "Normal (27cm)",
+        "price": 6
+      },
+      {
+        "size": "Groß (33cm)",
+        "price": 9
+      }
+    ],
+    "meals": [
+      {
+        "id": "06",
+        "name": "Vegetaria",
+        "description": "Artischocken, Zwiebeln, Paprika, Peperoni"
+      },
+      {
+        "id": "09",
+        "name": "Spezial",
+        "description": "Salami, Pilze, Schinken, Paprika"
+      },
+      {
+        "id": "10",
+        "name": "Teufel",
+        "description": "Knoblauch, Peperoni-Wurst, Sardellen"
+      },
+      {
+        "id": "11",
+        "name": "Marinara  ",
+        "description": "Zwiebeln, Knoblauch, Krabben, Muscheln"
+      },
+      {
+        "id": "12",
+        "name": "Pepe",
+        "description": "Zwiebeln, Knoblauch, Artischocken, Thunfisch"
+      },
+      {
+        "id": "13",
+        "name": "4 Jahreszeiten",
+        "description": "Pilze, Paprika, Salami, Schinken, Oliven, Ei"
+      },
+      {
+        "id": "14",
+        "name": "Selma",
+        "description": "Kapern, Schinken, Spinat, gekochtes Ei"
+      },
+      {
+        "id": "16",
+        "name": "Angelica",
+        "description": "Pilze, Paprika, Artischocken, Oliven, Schinken"
+      },
+      {
+        "id": "17",
+        "name": "Opa",
+        "description": "Pilze, Salami, Schinken, Würstchen"
+      },
+      {
+        "id": "18",
+        "name": "Hawaii",
+        "description": "Pilze, Schinken, Ananas"
+      },
+      {
+        "id": "19",
+        "name": "Mediterrana",
+        "description": "Erbsen, Blumenkohl, Auberginen"
+      },
+      {
+        "id": "20",
+        "name": "Oma",
+        "description": "Basilikum, Peperoni-Wurst, Oliven und Mozzarella"
+      },
+      {
+        "id": "21",
+        "name": "Quad Form.",
+        "description": "4 verschiedene Käsesorten"
+      },
+      {
+        "id": "24",
+        "name": "Gorgonzola",
+        "description": "Schinken, Gorgonzola"
+      },
+      {
+        "id": "26",
+        "name": "Toto",
+        "description": "Paprika, Schafskäse, Peperoni, Oliven, frische Tomaten"
+      },
+      {
+        "id": "27",
+        "name": "Panna",
+        "description": "Sahne, Zwiebeln, Speck und Käse"
+      },
+      {
+        "id": "28",
+        "name": "Rucola",
+        "description": "Knoblauch, Parmesan, frische Tomaten und Käse"
+      },
+      {
+        "id": "29",
+        "name": "Samira",
+        "description": "Spinat, Gorgonzola"
+      },
+      {
+        "id": "30",
+        "name": "Beniamino",
+        "description": "Schinken, Mais, Broccoli"
+      },
+      {
+        "id": "31",
+        "name": "Pizza Eva",
+        "description": "Mozzarella, Basilikum, frische Tomaten"
+      },
+      {
+        "id": "32",
+        "name": "Pizza Adam",
+        "description": "Mozzarella, frische Tomaten, Zucchini, Basilikum, Olivenöl und Oregano"
+      },
+      {
+        "id": "33",
+        "name": "Istanbul",
+        "description": "Sucuk, Peperoni"
+      },
+      {
+        "id": "34",
+        "name": "Bosporus",
+        "description": "Thunfisch, Zwiebeln, Peperoni"
+      },
+      {
+        "id": "35",
+        "name": "Ali Baba",
+        "description": "Thunfisch, Schafskäse"
+      },
+      {
+        "id": "36",
+        "name": "Napoli",
+        "description": "Artischocken, Oliven, Sardellen und Käse"
+      }
+    ]
   },
   "orders": [
-      {
-          "id": "0",
-          "table": 0,
-          "seat": 0,
-          "meal": 0,
-          "size": 0,
-          "delivered": false
-      }
+    {
+      "id": "0",
+      "table": 0,
+      "seat": 0,
+      "meal": 0,
+      "size": 0,
+      "delivered": false
+    }
   ]
 }

@@ -18,6 +18,17 @@
             <router-link to="/about" tag="li" class="nav-item">
               <a class="nav-link">About</a>
             </router-link>
+            <div class="nav-item">
+              <a 
+                class="nav-link"
+                v-on:click="handleLoginLogout">
+                {{user ? `Logout (${this.user.name})` : `Login`}}
+                </a>
+              <LoginModal 
+                ref="loginModal" 
+                :host="host"
+                @loggedIn="loggedIn"></LoginModal>
+            </div>
           </ul>
         </div>
       </div>
@@ -29,12 +40,32 @@
 
 
 <script>
+  import LoginModal from './components/LoginModal';
+
   export default {
     name: 'app',
+    components: {LoginModal},
     data() {
       return {
-        host: "http://localhost:80" //TODO: Get this from Process.env, CFG or anything like that
+        host: "http://localhost:7777", //TODO: Get this from Process.env, CFG or anything like that
+        user: null
       };
+    },
+    methods:{
+      handleLoginLogout: function(){
+        if (!this.user){
+          this.$refs.loginModal.showModal();
+        }
+      },
+      loggedIn: function(user) {
+        this.user = user;
+      }
+    },
+    created: function() {
+      this.axios.get(`${this.host}/auth/status`)
+      .then(res=>{
+        this.user = res.data.user;
+      }).catch(err=>{});
     }
   }
 </script>

@@ -31,14 +31,14 @@ class Database {
             var table = tables.filter(x => x.name == TABLE_NAMES[idx]);
             if (table.length == 0) {
                 console.log(`Adding table ${TABLE_NAMES[idx]}...`);
-                table.push({
+                tables.push({
                     "name": TABLE_NAMES[idx],
                     "seats": SEATS_PER_TABLE
                 });
             }
         }
 
-        db.set("tables", tables).write();
+        db.set("tables", tables.value()).write();
     }
 
     /**
@@ -58,7 +58,7 @@ class Database {
             .take(1)
             .value();
         if (!user || !user.length) return callback({ err: "Not found" });
-        calback(null, user[0]);
+        callback(null, user[0]);
     }
 
     static addUser(username, password, role, callback) {
@@ -129,7 +129,6 @@ class Database {
 
 
 Database.initialize("data.json");
-Database.clearTables();
-Database.initializeTablesAndTokens();
+Database.initializeTables();
 
 module.exports = Database;

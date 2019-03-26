@@ -2,19 +2,37 @@ const express = require('express');
 const utils = require('../utils');
 const Database = require('../database');
 const router = express.Router();
+const session = require('../ezsessions');
 
 router.get('/status', (req, res) => {
-    if (req.session.user) return res.status(200).send({ msg: 'Logged in' });
-    res.status(400).send({ err: 'Not logged in' });
+    session.verifyCookie(req, res, (req, res)=>{
+        return res.status(200).send({
+            msg: `Logged in as ${req.user.name}`,
+            user: {
+                name: req.user.name,
+                role: req.user.role
+            }
+        });
+    });
+    //res.status(400).send({ err: 'Not logged in' });
 });
 
 router.post('/login', (req, res) => {
-    if (req.session.user) return res.status(400).send({ err: 'Already logged in' });
+    //if (req.session.user) return res.status(400).send({ err: 'Already logged in' });
 
     Database.checkLogin(req.body.username, req.body.password, (err, user) => {
         if (err) return res.status(400).send(err);
-        req.session.user = user;
-        res.status(200).send({ msg: `Logged in as ${user[0].username}` });
+        session.generateCookie(req, res, user, (req, res)=>{
+            res.status(200).send(
+                {
+                    msg: `Logged in as ${user.name}`,
+                    user: {
+                        name: user.name,
+                        role: user.role
+                    }
+                }
+            );
+        });
     });
 });
 
