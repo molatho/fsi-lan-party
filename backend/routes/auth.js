@@ -14,12 +14,9 @@ router.get('/status', (req, res) => {
             }
         });
     });
-    //res.status(400).send({ err: 'Not logged in' });
 });
 
 router.post('/login', (req, res) => {
-    //if (req.session.user) return res.status(400).send({ err: 'Already logged in' });
-
     Database.checkLogin(req.body.username, req.body.password, (err, user) => {
         if (err) return res.status(400).send(err);
         session.generateCookie(req, res, user, (req, res)=>{
@@ -37,21 +34,29 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/logout', (req, res) => {
-    if (!req.session.user) return res.status(400).send({ err: 'Not logged in' });
-
-    req.session.user = undefined;
-    res.status(200).send({ msg: `Logged out` });
+    session.verifyCookie(req, res, (req, res)=>{
+        var user = req.user;
+        session.destroyCookie(req,res, (req,res)=>{
+            return res.status(200).send({
+                msg: `Logged out ${user.name}`,
+                user: {
+                    name: user.name,
+                    role: user.role
+                }
+            });
+        });
+    });
 });
 
 router.post('/new', (req, res) => {
-    if (!req.session.user) return res.status(400).send({ err: 'Not logged in' });
-    if (req.session.user.role != "admin") return res.status(403).send({ err: "Missing permissions" });
-
-    Database.addUser(req.body.username, req.body.password, req.body.role, (err, user) => {
-        if (err) return res.status(400).send(err);
-        res.status(200).send({ msg: `Created user ${req.body.username}` });
+    session.verifyCookie(req, res, (req, res)=>{
+        if (req.user.role != "admin") return res.status(403).send({ err: "Missing permissions" });
+        
+        Database.addUser(req.body.username, req.body.password, req.body.role, (err, user) => {
+            if (err) return res.status(400).send(err);
+            res.status(200).send({ msg: `Created user ${req.body.username}` });
+        });
     });
-
 });
 
 module.exports = router;

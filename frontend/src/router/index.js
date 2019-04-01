@@ -29,8 +29,8 @@ export default new Router({
       component: About
     },
     {
-      path: '/meals',
-      name: 'Meals',
+      path: '/orders',
+      name: 'Orders',
       component: Meal,
       props: this.getHost
     }
