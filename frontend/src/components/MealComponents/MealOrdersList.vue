@@ -1,23 +1,15 @@
 <template>
     <div>
-        <div v-for="tableOrders in getOrdersForTables()" :key="tableOrders">
+        <div v-for="tableOrders in getOrdersForTables()" :key="tableOrders.table.name">
             <b-card-group deck>
                 <b-card>
                     <b-card-title><b>{{ tableOrders.table.name }}</b></b-card-title>
                     <div v-for="n in tableOrders.table.seats" :key="n">
                         <div v-if="seatHasOrders(tableOrders, n-1)">
-                            <b-card-title class="mb-2">Platz {{n}}</b-card-title>                    
-                            <b-list-group flush>
-                            <b-list-group-item href="#">Cras justo odio</b-list-group-item> <!-- per order -->
-                            </b-list-group>
+                            <b>Platz {{n}}:</b>                    
+			    <span>{{ tableOrders.orders.map(order => order.meal.name + " [" + order.size + "]").join(', ') }}</span>                            
                         </div>
                     </div>
-
-                    <p class="card-text mt-2">
-                    Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex nulla tempor. Laborum
-                    consequat non elit enim exercitation cillum aliqua consequat id aliqua. Esse ex consectetur
-                    mollit voluptate est in duis laboris ad sit ipsum anim Lorem.
-                    </p>
                 </b-card>
             </b-card-group>
         </div>
