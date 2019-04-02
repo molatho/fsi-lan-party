@@ -8,7 +8,7 @@ router.get('/menu', (req, res)=>{
     res.status(200).send(Database.get().get("menu").value());
 });
 
-router.get('/orders/status', (req, res) =>{
+router.get('/orders', (req, res) =>{
     res.status(200).send(Database.get().get("orders").value());
 });
 

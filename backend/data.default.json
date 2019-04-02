@@ -154,10 +154,10 @@
     "orders": [
         {
             "id": "0",
-            "table": 0,
+            "table": "ORGA",
             "seat": 0,
-            "meal": 0,
-            "size": 0,
+            "meal": "36",
+            "size": "Normal (27cm)",
             "delivered": false
         }
     ]

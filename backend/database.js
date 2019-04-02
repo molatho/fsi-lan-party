@@ -24,7 +24,7 @@ class Database {
      */
     static initializeTables() {
         var db = Database.get();
-        var tables = db.get("tables");
+        var tables = db.get("tables").value();
         if (!tables) { tables = []; }
 
         for (var idx in TABLE_NAMES) {
@@ -38,7 +38,7 @@ class Database {
             }
         }
 
-        db.set("tables", tables.value()).write();
+        db.set("tables", tables).write();
     }
 
     /**

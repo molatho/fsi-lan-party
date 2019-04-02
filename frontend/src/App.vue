@@ -43,7 +43,7 @@
     
                     </a>
     
-                            <LoginModal ref="loginModal" :host="host" @loggedIn="loggedIn"></LoginModal>
+                            <LoginModal ref="loginModal" @loggedIn="loggedIn"></LoginModal>
     
                         </div>
     
@@ -57,7 +57,7 @@
     
     
     
-        <router-view :host="host"></router-view>
+        <router-view></router-view>
     
     </div>
 </template>
@@ -71,7 +71,6 @@ export default {
     components: { LoginModal },
     data() {
         return {
-            host: "http://localhost:7777", //TODO: Get this from Process.env, CFG or anything like that
             user: null
         };
     },
@@ -88,7 +87,7 @@ export default {
         },
         logout: function() {
             this.axios
-                .post(`${this.host}/auth/logout`)
+                .post("/auth/logout")
                 .then(res => {
                     this.user = null;
                 }).catch((error) => {
@@ -98,7 +97,7 @@ export default {
     },
     created: function() {
         this.axios
-            .get(`${this.host}/auth/status`)
+            .get("/auth/status")
             .then(res => {
                 this.user = res.data.user;
             }).catch(err => {});

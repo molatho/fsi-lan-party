@@ -1,11 +1,11 @@
 <template>
     <div>
     
-        <b-modal id="modal" ref="modal" title="Submit your name" @ok="handleOk">
+        <b-modal id="modal" ref="modal" title="[FS-I] Login" @ok="handleOk">
     
             <div class="d-block text-center">
     
-                <h3>Login!</h3>
+                <i class="fas fa-angle-double-left"></i><i>pls no hakkerino</i><i class="fas fa-angle-double-right"></i>
     
             </div>
     
@@ -31,7 +31,6 @@
 <script>
 export default {
     name: "LoginModal",
-    props: ['host'],
     data: function() {
         return {
             "username": "",
@@ -59,7 +58,7 @@ export default {
             this.$refs.modal.busy = true;
             this.errormsg = null;
             this.axios
-                .post(`${this.host}/auth/login`, { username: this.username, password: this.password })
+                .post("/auth/login", { username: this.username, password: this.password })
                 .then(res => {
                     this.$emit('loggedIn', res.data.user);
                     this.hideModal();

@@ -10,6 +10,46 @@
     {
       "name": "ORGA",
       "seats": 10
+    },
+    {
+      "name": "Alfa",
+      "seats": 8
+    },
+    {
+      "name": "Bravo",
+      "seats": 8
+    },
+    {
+      "name": "Charlie",
+      "seats": 8
+    },
+    {
+      "name": "Delta",
+      "seats": 8
+    },
+    {
+      "name": "Echo",
+      "seats": 8
+    },
+    {
+      "name": "Foxtrot",
+      "seats": 8
+    },
+    {
+      "name": "Golf",
+      "seats": 8
+    },
+    {
+      "name": "Hotel",
+      "seats": 8
+    },
+    {
+      "name": "India",
+      "seats": 8
+    },
+    {
+      "name": "Juliett",
+      "seats": 8
     }
   ],
   "menu": {
@@ -154,10 +194,26 @@
   "orders": [
     {
       "id": "0",
-      "table": 0,
+      "table": "ORGA",
       "seat": 0,
-      "meal": 0,
-      "size": 0,
+      "meal": "36",
+      "size": "Normal (27cm)",
+      "delivered": false
+    },
+    {
+      "id": "0",
+      "table": "ORGA",
+      "seat": 0,
+      "meal": "36",
+      "size": "Normal (27cm)",
+      "delivered": false
+    },
+    {
+      "id": "0",
+      "table": "ORGA",
+      "seat": 0,
+      "meal": "36",
+      "size": "Normal (27cm)",
       "delivered": false
     }
   ]

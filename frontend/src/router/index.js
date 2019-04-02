@@ -11,12 +11,6 @@ Vue.use(BootstrapVue)
 export default new Router({
   mode: 'history',
   linkActiveClass: 'active',
-  props: ['host'],
-  methods:{
-    getHost: function() {
-      return {host: host};
-    }
-  },
   routes: [
     {
       path: '/',
@@ -32,7 +26,6 @@ export default new Router({
       path: '/orders',
       name: 'Orders',
       component: Meal,
-      props: this.getHost
     }
   ]
 })

@@ -6,7 +6,7 @@ const Database = require('./database')
 const cookieParser = require('cookie-parser')
 
 const auth = require('./routes/auth')
-const pizza = require('./routes/pizza')
+const meals = require('./routes/meals')
 
 console.log("Initializing database...");
 Database.initialize("data.json");
@@ -25,7 +25,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/auth', auth);
-app.use('/pizza', pizza);
+app.use('/meals', meals);
 
 app.set('port', process.env.PORT || 7777)
 
