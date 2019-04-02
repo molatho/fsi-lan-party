@@ -4,6 +4,15 @@ const router = express.Router();
 const Database = require('../database');
 const utils = require('../utils');
 
+router.get('/fullinfo', (req, res) => {
+    var db = Database.get();
+    res.status(200).send({
+        menu: db.get("menu").value(),
+        tables: db.get("tables").value(),
+        orders: db.get("orders").value()
+    });
+});
+
 router.get('/menu', (req, res)=>{
     res.status(200).send(Database.get().get("menu").value());
 });

@@ -3,20 +3,30 @@
       <div class="jumbotron jumbotron-fluid">
         <div class="container">
           <h1>Bestellungen</h1>
-          <p>Hier findet ihr die aktuelle Speisekarte und eine Liste aller Bestellungen. Prüft gerne nach, ob eure Bestellungen auch richtig aufgenommen wurden und meldet euch ggf. vorne bei der Fachschaft!</p>
+          <p>
+            Hier findet ihr die aktuelle Speisekarte und eine Liste aller Bestellungen.<br>
+            Informiert euch vor der Bestellung, was alles auf der Speisekarte steht - dann geht es mit der Bestellaufnahme gleich schneller!
+          </p>
         </div>
       </div>
         <div class="container">
           <b-tabs content-class="mt-3">
             <b-tab title="Speisekarte" active>
-              <MealMenu :menu="menu"></MealMenu>
+              <MealMenu :menu="this.menu"></MealMenu>
             </b-tab>
             <b-tab title="Bestellungen">
               <MealOrdersList
-                :menu="menu"
-                :tables="tables"
-                :orders="orders">
+                :menu="this.menu"
+                :tables="this.tables"
+                :orders="this.orders">
                 </MealOrdersList>
+            </b-tab>
+            <b-tab title="Neue Bestellung" v-if="user && user.role == 'admin'">
+              <MealOrderNew>
+                :menu="this.menu"
+                :tables="this.tables"
+                :orders="this.orders">
+                </MealOrderNew>
             </b-tab>
           </b-tabs>
         </div>
@@ -27,6 +37,7 @@
 import Alert from './Alert'
 import MealMenu from './MealComponents/MealMenu'
 import MealOrdersList from './MealComponents/MealOrdersList'
+import MealOrderNew from './MealComponents/MealOrderNew'
 
 const MENU = {
     "sizes": [
@@ -215,40 +226,43 @@ const TABLES =  [
   ];
 
 const ORDERS = [
-    {
-      "id": "0",
-      "table": "ORGA",
-      "seat": 0,
-      "meal": "36",
-      "size": "Normal (27cm)",
-      "delivered": false
-    },
-    {
-      "id": "0",
-      "table": "ORGA",
-      "seat": 0,
-      "meal": "36",
-      "size": "Normal (27cm)",
-      "delivered": false
-    },
-    {
-      "id": "0",
-      "table": "ORGA",
-      "seat": 0,
-      "meal": "36",
-      "size": "Normal (27cm)",
-      "delivered": false
-    }
-  ];
+      {
+        "id": "1",
+        "table": "ORGA",
+        "seat": 0,
+        "meal": "36",
+        "size": "Normal (27cm)",
+        "delivered": false
+      },
+      {
+        "id": "2",
+        "table": "ORGA",
+        "seat": 0,
+        "meal": "36",
+        "size": "Normal (27cm)",
+        "delivered": false
+      },
+      {
+        "id": "3",
+        "table": "ORGA",
+        "seat": 0,
+        "meal": "36",
+        "size": "Normal (27cm)",
+        "delivered": false
+      }
+    ];
 
 export default {
   name: 'Meal',
+  props:['user'],
   data () {
     return {
+        //menu: null,
+        //tables: null,
+        //orders: null,
         menu: MENU,
         tables: TABLES,
         orders: ORDERS,
-        user: null,
         'formatter': new Intl.NumberFormat('de-DE', {
             style: 'currency',
             currency: 'EUR',
@@ -257,11 +271,10 @@ export default {
     }
   },
   components: { 
-    MealMenu, MealOrdersList
+    MealMenu, MealOrdersList, MealOrderNew
   },
   created: function() {
-      this.getMenu();
-      this.getUserInfo();
+    this.getMealInfo();
   },
   methods: {
     formatError: function(error) {
@@ -282,21 +295,13 @@ export default {
       if (!this.menu || !this.menu.sizes || !this.menu.sizes.length) return [];
       return arr.map(s=>{return { Größe: s.size, Preis: this.formatter.format(s.price) };});
     },
-    getMenu: function(event) {
+    getMealInfo: function(event) {
       this.axios
-        .get('/meals/menu')
+        .get('/meals/fullinfo')
         .then(res => {
-          this.menu = res.data;
-        });
-    },
-    getUserInfo: function() {
-      this.axios
-        .get('/auth/status')
-        .then(res => {
-          this.menu = res.data;
-        }).catch((error) => {
-          console.warn(error);
-          //this.$refs.alertRemove.show('danger','Fehler!', this.formatError(error));
+          this.menu = res.data.menu;
+          this.tables = res.data.tables;
+          this.orders = res.data.orders;
         });
     },
     deleteOrders: function(event) {

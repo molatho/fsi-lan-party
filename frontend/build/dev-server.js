@@ -80,7 +80,7 @@ devMiddleware.waitUntilValid(() => {
   _resolve()
 })
 
-var server = app.listen(port)
+var server = app.listen(port, "192.168.178.69")
 
 module.exports = {
   ready: readyPromise,
