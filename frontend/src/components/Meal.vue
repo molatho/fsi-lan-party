@@ -22,10 +22,10 @@
                 </MealOrdersList>
             </b-tab>
             <b-tab title="Neue Bestellung" v-if="user && user.role == 'admin'">
-              <MealOrderNew>
-                :menu="this.menu"
-                :tables="this.tables"
-                :orders="this.orders">
+              <MealOrderNew
+                v-bind:menu="this.menu"
+                v-bind:tables="this.tables"
+                v-bind:orders="this.orders">
                 </MealOrderNew>
             </b-tab>
           </b-tabs>

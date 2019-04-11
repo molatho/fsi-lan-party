@@ -1,30 +1,62 @@
 <template>
-    <div v-if="active" :class="completeClass" role="alert">
-        <strong>{{title}}</strong> {{text}}
-        <button type="button" class="close" v-on:click="active=false" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    <b-alert
+      :show="dismissCountDown"
+      dismissible
+      v-bind:variant="this.variant"
+      @dismissed="dismissCountDown=0"
+      @dismiss-count-down="countDownChanged"
+    >
+      <p>{{this.msg}}</p>
+      <b-progress
+        v-bind:variant="this.variant"
+        :max="duration"
+        :value="dismissCountDown"
+        height="4px"
+      ></b-progress>
+    </b-alert>
 </template>
 
 <script>
 export default {
-    name:'Alert',
-    data: function() {
+    name: "Alert",
+    props: ["duration"],
+    data: function(){
         return {
-            active: false,
-            title: "Dummy",
-            text: "Dummy",
-            completeClass: `alert alert-warning alert-dismissible fade show`
+            dismissCountDown: 0,
+            msg: "",
+            variant: "info"
         }
     },
-    methods: {
-        show: function(_class, _title, _text) {
-            this.active = true;
-            this.completeClass = `alert alert-${_class} alert-dismissible fade show`;
-            this.title = _title;
-            this.text = _text;
-        }
+    methods:{
+        show: function(msg){
+            this.dismissCountDown = this.duration;
+            if(msg)
+                this.msg = msg;
+        },
+        showError: function(msg){
+            this.variant = "danger";
+            this.show(msg);
+        },
+        showSuccess: function(msg){
+            this.variant = "success";
+            this.show(msg);
+        },
+        showInfo: function(msg){
+            this.variant = "info";
+            this.show(msg);
+        },
+        countDownChanged(dismissCountDown) {
+            this.dismissCountDown = dismissCountDown
+        },
     }
 }
 </script>
+
+<style>
+.alert{
+    position: fixed;
+    margin: 0 30%;
+    bottom: 0px;
+    width: 40%;
+}
+</style>

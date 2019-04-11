@@ -5,7 +5,9 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import App from './App'
 import router from './router'
+import BootstrapVue from 'bootstrap-vue'
 
+Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 Vue.use(VueAxios, axios)
 /* eslint-disable no-new */
