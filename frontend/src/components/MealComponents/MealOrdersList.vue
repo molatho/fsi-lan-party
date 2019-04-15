@@ -17,6 +17,16 @@
                                 :key="order.id"
                                 style="margin-left:4px;">
                                 {{ order.meal.name }} [ {{ order.size }} | {{ formatter.format(order.price) }} ]
+
+                                <b-button
+                                    class="inline-hck-button"
+                                    size="sm"
+                                    variant="danger"
+                                    v-if="this.$api.user && this.$api.user.role == 'admin'"
+                                    @click="deleteOrder(order.id)"
+                                >
+                                    <i class="fas fa-trash-alt"></i>
+                                </b-button>
                             </b-badge>
                             | Summe: {{ formatter.format(seat.orders.reduce((sum, order) => sum + order.price, 0)) }} 
                         </b-list-group-item> 
@@ -28,13 +38,16 @@
                 </b-card>
             </b-card-group>
         </div>
+        <Alert ref="orderAlert" duration="5"></Alert>
     </div>
 </template>
 
 <script>
+import Alert from '@/components/Alert'
 
 export default {
   name: 'MealOrdersList',
+  components: {Alert},
   props: ['menu', 'orders', 'tables'],
   data () {
     return {
@@ -47,6 +60,15 @@ export default {
     }
   },
   methods:{
+      deleteOrder: function(orderId) {
+          this.$api.deleteOrder(orderId, function(err, order) {
+              if (err) {
+                  this.$refs.orderAlert.showError(err.toString());
+              } else {
+                  this.$refs.orderAlert.showSuccess(order.id);
+              }
+          }.bind(this));
+      },
     //tables -> seats -> orders
     getOrdersForTables: function(table){
         if (!this.tables || !this.tables.length || !this.orders || !this.orders.length) return [];
@@ -82,5 +104,8 @@ export default {
 </script>
 
 <style>
-
+.inline-hck-button {
+    padding: 0.125rem .25rem;
+    font-size: small;
+}
 </style>

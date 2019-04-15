@@ -24,8 +24,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use('/auth', auth);
-app.use('/meals', meals);
+app.use('/api/auth', auth);
+app.use('/api/meals', meals);
 
 app.set('port', process.env.PORT || 7777)
 

@@ -191,30 +191,5 @@
       }
     ]
   },
-  "orders": [
-    {
-      "id": "1",
-      "table": "ORGA",
-      "seat": 0,
-      "meal": "36",
-      "size": "Normal (27cm)",
-      "delivered": false
-    },
-    {
-      "id": "2",
-      "table": "ORGA",
-      "seat": 0,
-      "meal": "36",
-      "size": "Normal (27cm)",
-      "delivered": false
-    },
-    {
-      "id": "3",
-      "table": "ORGA",
-      "seat": 0,
-      "meal": "36",
-      "size": "Normal (27cm)",
-      "delivered": false
-    }
-  ]
+  "orders": []
 }

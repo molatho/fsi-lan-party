@@ -91,14 +91,14 @@ class Database {
         var db = Database.get();
         var table = db.get("tables").filter(x => x.name == table).value()[0];
         if (
-            !table || seats < 0 || seats > table.seats - 1 ||
-            db.get("menu").get("mealId").filter(x => x.id == mealId).value().length == 0 ||
+            !table || seat < 0 || seat > table.seats - 1 ||
+            db.get("menu").get("meals").filter(x => x.id == mealId).value().length == 0 ||
             db.get("menu").get("sizes").filter(x => x.size == size).value().length == 0)
             return callback({ err: "Invalid parameters" });
 
         var order = {
             "id": uuid.v4(),
-            "table": table,
+            "table": table.name,
             "seat": seat,
             "meal": mealId,
             "size": size,
