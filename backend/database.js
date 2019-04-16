@@ -3,6 +3,22 @@ const FileSync = require('lowdb/adapters/FileSync')
 const utils = require("./utils");
 const uuid = require("uuid");
 
+const STATES = {
+    "New": 0,
+    "Paid": 1,
+    "Delivered": 2,
+    0: "Neu",
+    1: "Bezahlt",
+    2: "Ausgeliefert",
+    isValid: function(state) {
+        return STATES[state] !== undefined  || (state >= STATES.New && state < STATES.Delivered);
+    },
+    toString: function(state) {
+        if (!STATES.isValid(state)) return "INVALID";
+        return STATES[state];
+    }
+}
+
 var db;
 const SEATS_PER_TABLE = 8;
 const TABLE_NAMES = ["Alfa", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot", "Golf", "Hotel", "India", "Juliett"];
@@ -102,28 +118,44 @@ class Database {
             "seat": seat,
             "meal": mealId,
             "size": size,
-            "delivered": false
+            "state": STATES.New
         };
         db.get("orders").push(order).write();
         callback(null, order);
     }
 
     static deleteOrder(orderId, callback) {
-        if (utils.isEmpty(orderId)) return callback({ err: "Invalid parameters" });
+        Database.getOrderById(orderId, (err, order)=>{
+            if (err) return callback(err);
+            Database.get().get("orders").remove(order).write();
+            callback(null, order);
+        });
+    }
 
+    static getOrderById(orderId, callback) {
+        if (utils.isEmpty(orderId)) return callback({ err: "Invalid parameters" });
         var order = Database.get().get("orders").filter(x => x.id == orderId).take(1).value()[0];
         if (!order) return callback({ err: "Invalid order id" });
-        Database.get().get("orders").remove(order).write();
         callback(null, order);
     }
 
-    static setOrderDelivered(orderId, delivered, callback) {
-        if (utils.isEmpty(orderId)) return callback({ err: "Invalid parameters" });
-        var order = Database.get().get("orders").filter(x => x.id == orderId).take(1).value()[0];
-        if (!order) return callback({ err: "Invalid order id" });
-        order.delivered = delivered;
-        Database.get().get("orders").filter(x => x.id == orderId).assign(order).write();
-        callback(null, order);
+    static setOrderState(orderId, state, callback) {
+        if (!STATES.isValid(state)) return callback({ err: "Invalid parameters" });
+        Database.getOrderById(orderId, (err, order) => {
+            if (err) return callback(err);
+            order.state = state;
+            Database.get().get("orders").filter(x => x.id == orderId).assign(order).write();
+            callback(null, order);
+        });
+    }
+
+    static setOrderDeleted(orderId, deleted, callback) {
+        Database.getOrderById(orderId, (err, order) => {
+            if (err) return callback(err);
+            order.deleted = deleted;
+            Database.get().get("orders").filter(x => x.id == orderId).assign(order).write();
+            callback(null, order);
+        });
     }
 }
 

@@ -59,6 +59,7 @@ export default class api {
                 this._menu = res.data.menu;
                 this._tables = res.data.tables;
                 this._orders = res.data.orders;
+                console.log(this._orders);
                 cb(null, {
                     menu: this._menu,
                     tables: this._tables,
@@ -94,9 +95,22 @@ export default class api {
             .catch(err => cb(err));
     }
 
+    //router.put('/order/:id/state/:value',
+    setOrderState(orderId, state, cb) {
+        axios
+            .put(this.getUrl(`/meals/order/${orderId}/state/${state}`))
+            .then(res => {
+                var order = this._orders.find(x=>x.id == res.data.id);
+                this._orders[this._orders.indexOf(order)] = res.data;
+                cb(null, res.data);
+            })
+            .catch(err => cb(err));
+    }
+
     formatError(error) {
         if (!error) {
-            return "";
+            console.log(error);
+            return "NO ERROR?";
         } else {
             if (error.response) {
                 if (error.response.data) {

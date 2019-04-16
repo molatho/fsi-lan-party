@@ -42,10 +42,10 @@ router.delete('/order/:id', (req, res) => {
     });
 });
 
-router.put('/order/:id/delivered/:value', (req, res) => {
+router.put('/order/:id/state/:value', (req, res) => {
     session.verifyCookie(req, res, (req, res) => {
         if (req.user.role != "admin") return res.status(403).send({ err: "Missing permissions" });
-        Database.setOrderDelivered(req.body.orderid, req.params.value, (err, order) => {
+        Database.setOrderState(req.params.id, req.params.value, (err, order) => {
             if (err) res.status(400).send(err);
             return res.send(200).send(order);
         });

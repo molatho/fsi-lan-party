@@ -112,13 +112,11 @@ export default {
     },
     createOrder: function() {
         //createOrder(table, seat, mealId, size, cb) {
-        this.$api.createOrder(this.selectedTable.name, this.selectedSeat, this.selectedMeal.id, this.selectedSize.size, (err, order) => {
+        this.$api.createOrder(this.selectedTable.name, this.selectedSeat - 1, this.selectedMeal.id, this.selectedSize.size, (err, order) => {
             if (err) {
-              console.log(err);
               this.$refs.orderNewAlert.showError(err.toString());
             } else {
-              console.log(order);
-              this.$refs.orderNewAlert.showSuccess(`Created order #${order.id}`);
+              this.$refs.orderNewAlert.showSuccess("Bestellung aufgegeben!");
             }
         });
     },

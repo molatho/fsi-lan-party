@@ -1,6 +1,6 @@
 require('./check-versions')()
 
-process.env.NODE_ENV = 'production'
+process.env.NODE_ENV = 'dev';//'production'
 
 var ora = require('ora')
 var rm = require('rimraf')
@@ -8,7 +8,8 @@ var path = require('path')
 var chalk = require('chalk')
 var webpack = require('webpack')
 var config = require('../config')
-var webpackConfig = require('./webpack.prod.conf')
+var webpackConfig = require('./webpack.dev.conf')
+//var webpackConfig = require('./webpack.prod.conf')
 var ncp = require('ncp').ncp;
 
 var spinner = ora('building for production...')

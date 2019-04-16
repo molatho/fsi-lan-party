@@ -152,29 +152,37 @@
         ]
     },
     "orders": [
-      {
-        "id": "1",
-        "table": "ORGA",
-        "seat": 0,
-        "meal": "36",
-        "size": "Normal (27cm)",
-        "delivered": false
-      },
-      {
-        "id": "2",
-        "table": "ORGA",
-        "seat": 0,
-        "meal": "36",
-        "size": "Normal (27cm)",
-        "delivered": false
-      },
-      {
-        "id": "3",
-        "table": "ORGA",
-        "seat": 0,
-        "meal": "36",
-        "size": "Normal (27cm)",
-        "delivered": false
-      }
+        {
+            "id": "1",
+            "table": "ORGA",
+            "seat": 0,
+            "meal": "36",
+            "size": "Normal (27cm)",
+            "state": 0
+        },
+        {
+            "id": "2",
+            "table": "ORGA",
+            "seat": 0,
+            "meal": "36",
+            "size": "Normal (27cm)",
+            "state": 1
+        },
+        {
+            "id": "3",
+            "table": "ORGA",
+            "seat": 0,
+            "meal": "36",
+            "size": "Normal (27cm)",
+            "state": 2
+        },
+        {
+            "id": "4",
+            "table": "ORGA",
+            "seat": 0,
+            "meal": "36",
+            "size": "Normal (27cm)",
+            "state": 2
+        }
     ]
 }

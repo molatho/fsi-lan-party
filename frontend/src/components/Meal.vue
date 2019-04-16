@@ -60,6 +60,7 @@ export default {
     };
   },
   components: {
+    Alert,
     MealMenu,
     MealOrdersList,
     MealOrderNew
@@ -67,8 +68,10 @@ export default {
   created: function() {
     this.$api.getFullInfo(
       function(err) {
-        this.$refs.alert.showError(err.toString());
-        console.error(this.$api.formatError(err));
+        if (err) {
+          this.$refs.alert.showError(this.$api.formatError(err));
+          console.error(this.$api.formatError(err));
+        }
       }.bind(this)
     );
   },
