@@ -26,7 +26,7 @@ router.post('/order', (req, res) => {
     session.verifyCookie(req, res, (req, res) => {
         if (req.user.role != "admin") return res.status(403).send({ err: "Missing permissions" });
         Database.addOrder(req.body.table, req.body.seat, req.body.mealId, req.body.size, (err, order) => {
-            if (err) res.status(400).send(err);
+            if (err) return res.status(400).send(err);
             return res.status(200).send(order);
         });
     });
@@ -36,7 +36,7 @@ router.delete('/order/:id', (req, res) => {
     session.verifyCookie(req, res, (req, res) => {
         if (req.user.role != "admin") return res.status(403).send({ err: "Missing permissions" });
         Database.deleteOrder(req.params.id, (err, order) => {
-            if (err) res.status(400).send(err);
+            if (err) return res.status(400).send(err);
             return res.status(200).send(order);
         });
     });
@@ -45,9 +45,9 @@ router.delete('/order/:id', (req, res) => {
 router.put('/order/:id/state/:value', (req, res) => {
     session.verifyCookie(req, res, (req, res) => {
         if (req.user.role != "admin") return res.status(403).send({ err: "Missing permissions" });
-        Database.setOrderState(req.params.id, req.params.value, (err, order) => {
-            if (err) res.status(400).send(err);
-            return res.send(200).send(order);
+        Database.setOrderState(req.params.id, parseInt(req.params.value), (err, order) => {
+            if (err) return res.status(400).send(err);
+            return res.status(200).send(order);
         });
     });
 });

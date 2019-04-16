@@ -35,7 +35,7 @@
         <i class="fas fa-plus"></i>
       </b-button>
     </b-form>
-    <Alert ref="orderNewAlert" duration="5"></Alert>
+    <Alert ref="orderNewAlert" duration=5></Alert>
   </div>
 </template>
 
@@ -71,6 +71,7 @@ export default {
   },
   watch: {
     menu: function(newVal, oldVal) {
+      if (!newVal) return;
       this.sizeOptions = this.getSizeOptions(newVal.sizes);
       this.mealOptions = this.getMealOptions(newVal.meals);
     },

@@ -193,60 +193,36 @@
   },
   "orders": [
     {
-      "id": "f17ea5d8-54e3-4ccd-b41a-d503dba0303d",
+      "id": "1",
       "table": "ORGA",
-      "seat": 2,
-      "meal": "09",
+      "seat": 0,
+      "meal": "36",
       "size": "Normal (27cm)",
-      "state": 0
+      "state": 2
     },
     {
-      "id": "3474ac2f-d318-4d9a-a324-3d812a003b1a",
+      "id": "2",
       "table": "ORGA",
-      "seat": 2,
-      "meal": "09",
+      "seat": 0,
+      "meal": "36",
       "size": "Normal (27cm)",
-      "state": 0
+      "state": 2
     },
     {
-      "id": "9bb1688c-b722-43fd-900e-46948bdc2f6c",
+      "id": "3",
       "table": "ORGA",
-      "seat": 2,
-      "meal": "09",
+      "seat": 0,
+      "meal": "36",
       "size": "Normal (27cm)",
-      "state": 0
+      "state": 2
     },
     {
-      "id": "a94f7885-d908-46be-b834-dd0cf4f79240",
+      "id": "4",
       "table": "ORGA",
-      "seat": 3,
-      "meal": "09",
+      "seat": 0,
+      "meal": "36",
       "size": "Normal (27cm)",
-      "state": 0
-    },
-    {
-      "id": "da80633f-a981-4586-a85c-4053d036ec90",
-      "table": "ORGA",
-      "seat": 3,
-      "meal": "09",
-      "size": "Normal (27cm)",
-      "state": 0
-    },
-    {
-      "id": "986474b3-2bbc-4fe3-b526-bb4a68f0b078",
-      "table": "ORGA",
-      "seat": 3,
-      "meal": "09",
-      "size": "Normal (27cm)",
-      "state": 0
-    },
-    {
-      "id": "3685c1da-81d0-43dd-9b8f-041252f2b1db",
-      "table": "Alfa",
-      "seat": 1,
-      "meal": "13",
-      "size": "Groß (33cm)",
-      "state": "1"
+      "state": 2
     }
   ]
 }

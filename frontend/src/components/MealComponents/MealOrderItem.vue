@@ -43,7 +43,7 @@
     >
       <i class="fas fa-trash-alt"></i>
     </b-button>
-    <Alert ref="orderAlert" duration="5"></Alert>
+    <Alert ref="orderAlert" duration=5></Alert>
   </b-list-group-item>
 </template>
 

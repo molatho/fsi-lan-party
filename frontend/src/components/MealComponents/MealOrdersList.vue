@@ -10,17 +10,25 @@
             <b>{{ tableOrders.table.name }}</b>
           </b-card-title>
           <div v-for="seat in tableOrders.seats" :key="seat.seat">
-            <b-button v-b-toggle="tableOrders.table.name + seat" class="m-1 seat-button">Platz {{ seat.seat + 1 }}</b-button>
-            <b-collapse v-bind:id="tableOrders.table.name + seat">
-              <b-card>
-                <b-list-group>
-                  <MealOrderItem v-for="order in seat.orders" :key="order.id" v-bind:order="order"></MealOrderItem>
-                  <b-list-group-item v-if="tableOrders.seats.length == 0">
-                    <i>Noch keine Bestellungen für diesen Tisch</i>
-                  </b-list-group-item>
-                </b-list-group>
-              </b-card>
-            </b-collapse>
+            <!--<button
+              disabled
+              v-if="seat.orders == 0"
+              class="m-1 seat-button"
+            > Platz {{ seat.seat +1 }} - <i>Keine Bestellungen</i>
+            </button>
+            <div v-if="seat.orders > 0">-->
+              <b-button v-b-toggle="(tableOrders.table.name + seat.seat)" class="m-1 seat-button">Platz {{ seat.seat + 1 }}</b-button>
+              <b-collapse v-bind:id="(tableOrders.table.name + seat.seat)">
+                <b-card>
+                  <b-list-group>
+                    <MealOrderItem v-for="order in seat.orders" :key="order.id" v-bind:order="order"></MealOrderItem>
+                    <b-list-group-item v-if="tableOrders.seats.length == 0">
+                      <i>Noch keine Bestellungen für diesen Tisch</i>
+                    </b-list-group-item>
+                  </b-list-group>
+                </b-card>
+              </b-collapse>
+            <!--</div>-->
           </div>
         </b-card>
       </b-card-group>

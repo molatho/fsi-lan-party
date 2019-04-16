@@ -5,7 +5,7 @@ var utils = {
   isEmptyArr: function (arr) {
     if (!arr || arr.length == 0) return true;
     for (var i in arr) {
-      if (utils.isEmpty(arr[i])) return true;
+      if (typeof(arr[i]) === 'string' && utils.isEmpty(arr[i])) return true;
     }
     return false;
   }
