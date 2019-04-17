@@ -81,8 +81,10 @@ export default {
           this.toDelete = false;
       }
 
-      this.$api.setOrderState(this.order.id, state, function(err, order) {
-          if (err) return this.$refs.orderAlert.showError(this.$api.formatError(err));
+      this.$api.setOrderState(this.order.id, state, function(err, newOrder) {
+        this.order = newOrder;
+        this.$forceUpdate();
+        if (err) return this.$refs.orderAlert.showError(this.$api.formatError(err));
       }.bind(this));
     },
     handleDelete: function() {

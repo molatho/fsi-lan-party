@@ -59,6 +59,8 @@ export default {
     };
   },
   created: function() {
+    if(this.menu == null)
+      return;
     this.tableOptions = this.getTableOptions(this.tables);
     if (this.tableOptions && this.tableOptions.length)
       this.selectedTable = this.tableOptions[0].value;

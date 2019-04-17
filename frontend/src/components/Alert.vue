@@ -58,5 +58,6 @@ export default {
     margin: 0 30%;
     bottom: 0px;
     width: 40%;
+    z-index: 999;
 }
 </style>
