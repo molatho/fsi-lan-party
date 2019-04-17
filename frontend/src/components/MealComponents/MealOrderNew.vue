@@ -35,7 +35,7 @@
         <i class="fas fa-plus"></i>
       </b-button>
     </b-form>
-    <Alert ref="orderNewAlert" duration=5></Alert>
+    <Alert ref="orderNewAlert" :duration="5"></Alert>
   </div>
 </template>
 
@@ -58,7 +58,7 @@ export default {
       selectedMeal: null
     };
   },
-  created: function() {
+  mounted: function() {
     if(this.menu == null)
       return;
     this.tableOptions = this.getTableOptions(this.tables);

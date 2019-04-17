@@ -7,6 +7,7 @@ export default class api {
         this._menu = null;
         this._tables = null;
         this._orders = null;
+        this._ordersByTables = null;
     }
 
     get host() { return this._host; }
@@ -14,8 +15,37 @@ export default class api {
     get menu() { return this._menu; }
     get tables() { return this._tables; }
     get orders() { return this._orders; }
+    get ordersByTables() { return this._ordersByTables; };
 
     getUrl(endpoint) { return `${this.host}/api${endpoint}`; }
+
+    updateOrdersByTables() {
+        if (!this._tables || !this._menu || !this._orders) return this._ordersByTables = [];
+        this._ordersByTables = this._tables.map(table => {
+            return {
+                "table": table,
+                table: table,
+                seats: Array.apply(null, { length: table.seats })
+                    .map(Number.call, Number)
+                    .map(s => {
+                    return {
+                        seat: s,
+                        orders: this._orders
+                        .filter(order => order.table == table.name && order.seat == s)
+                        .map(order => {
+                            return {
+                            id: order.id,
+                            seat: s,
+                            state: order.state,
+                            size: this._menu.sizes.find(size => size.size == order.size),
+                            meal: this._menu.meals.find(meal => meal.id == order.meal)
+                            };
+                        })
+                    };
+                })
+            }
+        });
+    }
 
     getAuthStatus(cb) {
         axios
@@ -59,7 +89,7 @@ export default class api {
                 this._menu = res.data.menu;
                 this._tables = res.data.tables;
                 this._orders = res.data.orders;
-                console.log(this._orders);
+                this.updateOrdersByTables();
                 cb(null, {
                     menu: this._menu,
                     tables: this._tables,
@@ -79,6 +109,7 @@ export default class api {
             })
             .then(res => {
                 this._orders.push(res.data);
+                this.updateOrdersByTables();
                 cb(null, res.data);
             })
             .catch(err => cb(err));
@@ -88,8 +119,9 @@ export default class api {
         axios
             .delete(this.getUrl('/meals/order/' + orderId))
             .then(res => {
-                var order = this._orders.find(x=>x.id == res.data.id);
-                if (order) this._orders.splice(this._orders.indexOf(order), 1); 
+                var order = this._orders.find(x => x.id == res.data.id);
+                if (order) this._orders.splice(this._orders.indexOf(order), 1);
+                this.updateOrdersByTables();
                 cb(null, res.data);
             })
             .catch(err => cb(err));
@@ -100,8 +132,9 @@ export default class api {
         axios
             .put(this.getUrl(`/meals/order/${orderId}/state/${state}`))
             .then(res => {
-                var order = this._orders.find(x=>x.id == res.data.id);
+                var order = this._orders.find(x => x.id == res.data.id);
                 this._orders[this._orders.indexOf(order)] = res.data;
+                this.updateOrdersByTables();
                 cb(null, res.data);
             })
             .catch(err => cb(err));

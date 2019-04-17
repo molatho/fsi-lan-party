@@ -1,48 +1,57 @@
 <template>
+
   <b-list-group-item v-bind:variant="this.toDelete ? 'warning': 'default'">
-    {{ order.meal.name }} [ {{ order.size }} ]
-    <!-- State -->
-    <b-button
-      v-if="this.order.state == 0 && this.$api.user && this.$api.user.role == 'admin'"
-      class="inline-hck-button"
-      size="sm"
-      variant="success"
-      @click="setState(1)"
-    >
-      <i class="fas fa-money-bill-wave-alt"></i> Bezahlen
-    </b-button>
+    {{ order.meal.name }} <i>{{ `(${order.size.size} - ${this.formatter.format(order.size.price)})`}}</i>
+    <!-- Show states -->
+    <span> - Status:</span>
+    <span v-if="this.order.state == 0">Warte auf Bezahlung...</span>
+    <span v-if="this.order.state == 1">Warte auf Auslieferung...</span>
+    <span v-if="this.order.state == 2">Guten Appetit!</span>
 
-    <b-button
-      v-if="this.order.state == 1 && this.$api.user && this.$api.user.role == 'admin'"
-      class="inline-hck-button"
-      size="sm"
-      variant="success"
-      @click="setState(2)"
-    >
-      <i class="fas fa-box"></i> Ausliefern
-    </b-button>
+    <!-- Control buttons -->
+    <div v-if="this.$api.user && this.$api.user.role == 'admin'">
+      <!-- State -->
+      <b-button
+        v-if="this.order.state == 0"
+        class="inline-hck-button"
+        size="sm"
+        variant="success"
+        @click="setState(1)"
+      >
+        <i class="fas fa-money-bill-wave-alt"></i> Bezahlen
+      </b-button>
 
-    <!-- Reset -->
-    <b-button
-      v-if="this.$api.user && this.$api.user.role == 'admin'"
-      class="inline-hck-button"
-      size="sm"
-      variant="success"
-      @click="setState(0)"
-    >
-      <i class="fas fa-undo"></i> Zurücksetzen
-    </b-button>
+      <b-button
+        v-if="this.order.state == 1"
+        class="inline-hck-button"
+        size="sm"
+        variant="success"
+        @click="setState(2)"
+      >
+        <i class="fas fa-box"></i> Ausliefern
+      </b-button>
 
-    <!-- Delete -->
-    <b-button
-      v-if="this.$api.user && this.$api.user.role == 'admin'"
-      class="inline-hck-button"
-      size="sm"
-      variant="danger"
-      @click="handleDelete"
-    >
-      <i class="fas fa-trash-alt"></i>
-    </b-button>
+      <!-- Reset -->
+      <b-button
+        v-if="this.order.state > 0 || this.toDelete"
+        class="inline-hck-button"
+        size="sm"
+        variant="success"
+        @click="reset"
+      >
+        <i class="fas fa-undo"></i> Zurücksetzen
+      </b-button>
+
+      <!-- Delete -->
+      <b-button
+        class="inline-hck-button"
+        size="sm"
+        variant="danger"
+        @click="handleDelete"
+      >
+        <i class="fas fa-trash-alt"></i>
+      </b-button>
+    </div>
     <Alert ref="orderAlert" duration=5></Alert>
   </b-list-group-item>
 </template>
@@ -72,18 +81,25 @@ export default {
   props: ["order"],
   data: function() {
     return {
+      formatter: new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+        minimumFractionDigits: 2
+      }),
       toDelete: false
     };
   },
   methods: {
+    reset: function(state) {
+      this.toDelete = false;
+      this.setState(0);
+    },
     setState: function(state) {
       if (!this.toDelete) {
           this.toDelete = false;
       }
 
       this.$api.setOrderState(this.order.id, state, function(err, newOrder) {
-        this.order = newOrder;
-        this.$forceUpdate();
         if (err) return this.$refs.orderAlert.showError(this.$api.formatError(err));
       }.bind(this));
     },

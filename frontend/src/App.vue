@@ -61,7 +61,7 @@ export default {
     }
   },
   created: function() {
-    this.$api.getAuthStatus((err, user) => console.log(err));
+    this.$api.getAuthStatus((err, user) => { });
   }
 };
 </script>

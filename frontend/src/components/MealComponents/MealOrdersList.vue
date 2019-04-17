@@ -3,43 +3,41 @@
     <p>
       <i>Prüft gerne nach, ob eure Bestellungen auch richtig aufgenommen wurden und meldet euch bei Unstimmigkeiten bitte sofort vorne bei der Fachschaft!</i>
     </p>
-    <div v-for="tableOrders in getOrdersForTables()" :key="tableOrders.table.name">
+    <div v-for="order in ordersByTables" :key="order.table.name">
       <b-card-group deck>
         <b-card>
           <b-card-title>
-            <b>{{ tableOrders.table.name }}</b>
+            <b>{{ order.table.name }}</b>
           </b-card-title>
-          <div v-for="seat in tableOrders.seats" :key="seat.seat">
-            <!--<button
+          <div v-for="seat in order.seats" :key="seat.seat">
+            <button
               disabled
-              v-if="seat.orders == 0"
+              v-if="seat.orders.length == 0"
               class="m-1 seat-button"
             > Platz {{ seat.seat +1 }} - <i>Keine Bestellungen</i>
             </button>
-            <div v-if="seat.orders > 0">-->
-              <b-button v-b-toggle="(tableOrders.table.name + seat.seat)" class="m-1 seat-button">Platz {{ seat.seat + 1 }}</b-button>
-              <b-collapse v-bind:id="(tableOrders.table.name + seat.seat)">
+            <div v-if="seat.orders.length > 0">
+              <b-button v-b-toggle="(order.table.name + seat.seat)" class="m-1 seat-button">Platz {{ seat.seat + 1 }} - <i>{{ seat.orders.length }} Bestellung(en)</i></b-button>
+              <b-collapse v-bind:id="(order.table.name + seat.seat)">
                 <b-card>
                   <b-list-group>
                     <MealOrderItem v-for="order in seat.orders" :key="order.id" v-bind:order="order"></MealOrderItem>
-                    <b-list-group-item v-if="tableOrders.seats.length == 0">
-                      <i>Noch keine Bestellungen für diesen Tisch</i>
-                    </b-list-group-item>
                   </b-list-group>
                 </b-card>
               </b-collapse>
-            <!--</div>-->
+            </div>
           </div>
         </b-card>
       </b-card-group>
     </div>
-    <Alert ref="orderAlert" duration="5"></Alert>
+    <Alert ref="orderAlert" :duration="5"></Alert>
   </div>
 </template>
 
 <script>
 import Alert from "@/components/Alert";
 import MealOrderItem from "@/components/MealComponents/MealOrderItem";
+import { clearInterval } from 'timers';
 
 export default {
   name: "MealOrdersList",
@@ -47,12 +45,7 @@ export default {
   props: ["menu", "orders", "tables"],
   data() {
     return {
-      formatter: new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 2
-      }),
-      seatOrders: null
+      updateInterval: null
     };
   },
   methods: {
@@ -69,7 +62,7 @@ export default {
       );
     },
     //tables -> seats -> orders
-    getOrdersForTables: function(table) {
+    /*getOrdersForTables: function(table) {
       if (
         !this.tables ||
         !this.tables.length ||
@@ -105,6 +98,22 @@ export default {
             //.filter(s => s.orders && s.orders.length > 0)
         };
       }));
+    }*/
+  },
+  mounted: function() {
+    if (!this.updateInterval) this.updateInterval = setInterval(()=> {
+      this.$api.getFullInfo((err, data)=> {
+        if (err) this.$refs.orderAlert.showError(`Update fehlgeschlagen: ${this.$api.formatError(err)}`);
+      });
+    }, 1000);
+  },
+  destroyed: function() {
+    if (this.updateInterval) clearInterval(this.updateInterval);
+  },
+  computed: {
+    ordersByTables: function() {
+      if (!this.$api) return [];
+      return this.$api.ordersByTables;
     }
   }
 };
