@@ -28,9 +28,9 @@ class ezsession {
         var d = new Date();
         d.setTime(d.getTime() + (exhour*60*60*1000));
         var expires = "expires="+ d.toUTCString();
-        if(process.env.NODE_ENV === "production")
-            return cname + "=" + cvalue + ";" + expires + ";path=/;HttpOnly;secure";
-        else
+        //if(process.env.NODE_ENV === "production")
+        //    return cname + "=" + cvalue + ";" + expires + ";path=/;HttpOnly;secure";
+        //else
             return cname + "=" + cvalue + ";" + expires + ";path=/";
     }
 
