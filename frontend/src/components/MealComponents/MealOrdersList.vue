@@ -61,44 +61,6 @@ export default {
         }.bind(this)
       );
     },
-    //tables -> seats -> orders
-    /*getOrdersForTables: function(table) {
-      if (
-        !this.tables ||
-        !this.tables.length ||
-        !this.orders ||
-        !this.orders.length
-      )
-        return [];
-
-      return (this.seatOrders = this.tables.map(table => {
-        return {
-          table: table,
-          seats: Array.apply(null, { length: table.seats })
-            .map(Number.call, Number)
-            .map(s => {
-              return {
-                seat: s,
-                orders: this.orders
-                  .filter(order => order.table == table.name && order.seat == s)
-                  .map(order => {
-                    return {
-                      id: order.id,
-                      seat: s,
-                      state: order.state,
-                      size: order.size,
-                      price: this.menu.sizes.find(
-                        size => size.size == order.size
-                      ).price,
-                      meal: this.menu.meals.find(meal => meal.id == order.meal)
-                    };
-                  })
-              };
-            })
-            //.filter(s => s.orders && s.orders.length > 0)
-        };
-      }));
-    }*/
   },
   mounted: function() {
     if (!this.updateInterval) this.updateInterval = setInterval(()=> {
