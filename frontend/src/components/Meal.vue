@@ -29,6 +29,14 @@
             :orders="this.$api.orders"
           ></MealOrdersList>
         </b-tab>
+        <b-tab v-if="this.$api.user && this.$api.user.role == 'admin'" title="Auslieferung">
+          <MealDelivery
+            :menu="this.$api.menu"
+            :tables="this.$api.tables"
+            :orders="this.$api.orders">
+
+          </MealDelivery>
+        </b-tab>
         <!--<b-tab title="Neue Bestellung" v-if="this.$api.user && this.$api.user.role == 'admin'">
               <MealOrderNew
                 v-bind:menu="this.$api.menu"
@@ -38,7 +46,7 @@
         </b-tab>-->
       </b-tabs>
     </div>
-    <Alert ref="alert" duration="5"></Alert>
+    <Alert ref="alert" :duration=5></Alert>
   </div>
 </template>
 
@@ -47,6 +55,7 @@ import Alert from "./Alert";
 import MealMenu from "./MealComponents/MealMenu";
 import MealOrdersList from "./MealComponents/MealOrdersList";
 import MealOrderNew from "./MealComponents/MealOrderNew";
+import MealDelivery from "./MealComponents/MealDelivery"
 //TODO: Meals nicht löschen sondern auf "gelöscht" Status
 export default {
   name: "Meal",
@@ -63,7 +72,8 @@ export default {
     Alert,
     MealMenu,
     MealOrdersList,
-    MealOrderNew
+    MealOrderNew,
+    MealDelivery
   },
   created: function() {
     this.$api.getFullInfo(

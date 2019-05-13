@@ -56,7 +56,17 @@ export default class api {
         return this._menu.meals.map(meal => {
             return {
                 "id": meal.id,
-                "orders": this._orders.filter(order => order.meal == meal.id && order.state == state)
+                "orders": this._orders
+                    .filter(order => order.meal == meal.id && order.state == state)
+                    .map(order => {
+                        return {
+                        id: order.id,
+                        seat: order.seat,
+                        state: order.state,
+                        size: this._menu.sizes.find(size => size.size == order.size),
+                        meal: this._menu.meals.find(meal => meal.id == order.meal)
+                        };
+                    })
             }
         });
     }
@@ -104,8 +114,8 @@ export default class api {
                 this._tables = res.data.tables;
                 this._orders = res.data.orders;
                 this.updateOrdersByTables();
-                this.unpaidOrders = this.getOrdersByState(0);
-                this.undeliveredOrders = this.getOrdersByState(1);
+                this._unpaidOrders = this.getOrdersByState(0);
+                this._undeliveredOrders = this.getOrdersByState(1);
                 cb(null, {
                     menu: this._menu,
                     tables: this._tables,
@@ -126,8 +136,8 @@ export default class api {
             .then(res => {
                 this._orders.push(res.data);
                 this.updateOrdersByTables();
-                this.unpaidOrders = this.getOrdersByState(0);
-                this.undeliveredOrders = this.getOrdersByState(1);
+                this._unpaidOrders = this.getOrdersByState(0);
+                this._undeliveredOrders = this.getOrdersByState(1);
                 cb(null, res.data);
             })
             .catch(err => cb(err));
@@ -140,8 +150,8 @@ export default class api {
                 var order = this._orders.find(x => x.id == res.data.id);
                 if (order) this._orders.splice(this._orders.indexOf(order), 1);
                 this.updateOrdersByTables();
-                this.unpaidOrders = this.getOrdersByState(0);
-                this.undeliveredOrders = this.getOrdersByState(1);
+                this._unpaidOrders = this.getOrdersByState(0);
+                this._undeliveredOrders = this.getOrdersByState(1);
                 cb(null, res.data);
             })
             .catch(err => cb(err));
@@ -155,8 +165,8 @@ export default class api {
                 var order = this._orders.find(x => x.id == res.data.id);
                 this._orders[this._orders.indexOf(order)] = res.data;
                 this.updateOrdersByTables();
-                this.unpaidOrders = this.getOrdersByState(0);
-                this.undeliveredOrders = this.getOrdersByState(1);
+                this._unpaidOrders = this.getOrdersByState(0);
+                this._undeliveredOrders = this.getOrdersByState(1);
                 cb(null, res.data);
             })
             .catch(err => cb(err));

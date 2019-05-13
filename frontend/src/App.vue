@@ -19,6 +19,9 @@
             <router-link to="/" exact tag="li" class="nav-item">
               <a class="nav-link">Home</a>
             </router-link>
+            <router-link to="/help" exact tag="li" class="nav-item">
+              <a class="nav-link">Hilfe</a>
+            </router-link>
             <router-link to="/orders" tag="li" class="nav-item">
               <a class="nav-link">Bestellungen</a>
             </router-link>

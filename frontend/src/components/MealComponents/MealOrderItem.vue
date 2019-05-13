@@ -52,7 +52,7 @@
         <i class="fas fa-trash-alt"></i>
       </b-button>
     </div>
-    <Alert ref="orderAlert" duration=5></Alert>
+    <Alert ref="orderAlert" :duration=5></Alert>
   </b-list-group-item>
 </template>
 
@@ -75,17 +75,19 @@ const STATES = {
     }
 }
 
+const FORMATTER = new Intl.NumberFormat("de-DE", {
+        style: "currency",
+        currency: "EUR",
+        minimumFractionDigits: 2
+      });
+
 export default {
   name: "MealOrderItem",
   components: { Alert },
   props: ["order"],
   data: function() {
     return {
-      formatter: new Intl.NumberFormat("de-DE", {
-        style: "currency",
-        currency: "EUR",
-        minimumFractionDigits: 2
-      }),
+      formatter: FORMATTER,
       toDelete: false
     };
   },
@@ -101,6 +103,8 @@ export default {
 
       this.$api.setOrderState(this.order.id, state, function(err, newOrder) {
         if (err) return this.$refs.orderAlert.showError(this.$api.formatError(err));
+        this.order = newOrder;
+        //this.$forceUpdate();
       }.bind(this));
     },
     handleDelete: function() {

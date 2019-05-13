@@ -2,7 +2,7 @@ import Vue from 'vue'
 import BootstrapVue from 'bootstrap-vue'
 import Router from 'vue-router'
 import Home from '@/components/Home'
-import About from '@/components/About'
+import Help from '@/components/Help'
 import Meal from '@/components/Meal'
 
 Vue.use(Router)
@@ -18,9 +18,9 @@ export default new Router({
       component: Home
     },
     {
-      path: '/about',
-      name: 'About',
-      component: About
+      path: '/help',
+      name: 'Help',
+      component: Help
     },
     {
       path: '/orders',

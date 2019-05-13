@@ -30,7 +30,7 @@
         </b-card>
       </b-card-group>
     </div>
-    <Alert ref="orderAlert" :duration="5"></Alert>
+    <Alert ref="orderAlert" :duration=5></Alert>
   </div>
 </template>
 

@@ -198,15 +198,15 @@
       "seat": 0,
       "meal": "06",
       "size": "Normal (27cm)",
-      "state": 0
+      "state": 2
     },
     {
-      "id": "30b2b8f6-8010-4d9c-9543-e8184fba76ae",
-      "table": "Alfa",
-      "seat": 2,
-      "meal": "10",
-      "size": "Groß (33cm)",
-      "state": 0
+      "id": "0437d193-0470-4815-8049-819dd68437f2",
+      "table": "ORGA",
+      "seat": 0,
+      "meal": "06",
+      "size": "Normal (27cm)",
+      "state": 1
     }
   ]
 }
