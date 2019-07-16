@@ -7,12 +7,16 @@
           <p class="lead">Dies ist die Infoseite zur LAN-Party der FS-I <b>{{this.year}}</b>.</p>
         </div>
       </div>
+      <Code :keys="['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'KeyA', 'KeyB']"></Code>
     </div>
 </template>
 
 <script>
+import Code from '@/components/Code';
+
 export default {
   name: 'Home',
+  components: { Code },
   data () {
     return {
       year: '20xx'
